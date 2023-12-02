@@ -1,0 +1,51 @@
+﻿using CMSLib.DTO;
+using CMSLib.Model;
+
+namespace Server.DAO
+{
+    internal class ItemDAO : DAO<Item>
+    {
+        public override void Upsert(Item item)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var shopitem = Get(item.Id);
+                if (shopitem != null)
+                {
+                    db.Items.Update(item);
+                }
+                else
+                {
+                    db.Items.Add(item);
+                }
+
+                db.SaveChanges();
+            }
+        }
+
+        public override Item Get(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                return db.Items.FirstOrDefault(c => c.Id == id);
+            }
+        }
+
+        public override List<Item> GetAll()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                return db.Items.ToList();
+            }
+        }
+
+        public override void Remove(Item item)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                db.Items.Remove(item);
+                db.SaveChanges();
+            }
+        }
+    }
+}
