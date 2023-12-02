@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UCMSApp.VVM.Auth.Authorization"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:UCMSApp.VVM.Auth"
+    Title="{Binding Title}"
+    x:DataType="vm:AuthorizationViewModel">
+    <VerticalStackLayout
+        HorizontalOptions="Center"
+        Spacing="30"
+        VerticalOptions="Center">
+        <Label
+            FontAttributes="Bold"
+            FontSize="30"
+            Text="Авторизация" />
+        <Entry Placeholder="Email" Text="{Binding User.Email}" />
+        <Entry
+            IsPassword="True"
+            Placeholder="Пароль"
+            Text="{Binding User.Password}" />
+
+        <VerticalStackLayout>
+            <Button
+                Command="{Binding LoginCommand}"
+                CornerRadius="20"
+                FontAttributes="Bold"
+                Text="Войти" />
+            <Button
+                BackgroundColor="Transparent"
+                Command="{Binding RegisterCommand}"
+                CornerRadius="20"
+                FontAttributes="Bold"
+                Text="Регистрация"
+                TextColor="White" />
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Net;
+using UCMSApp.Services;
+using UCMSApp.VVM.Auth;
 
 namespace UCMSApp
 {
@@ -15,8 +18,13 @@ namespace UCMSApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+
+            builder.Services.AddSingleton<UserService>();
+            builder.Services.AddSingleton<VVM.Auth.Authorization>();
+            builder.Services.AddSingleton<AuthorizationViewModel>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

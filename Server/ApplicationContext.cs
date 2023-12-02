@@ -17,9 +17,9 @@ namespace CMSLib.Model
 			Database.EnsureDeleted();
 			Database.EnsureCreated();
 
-			Users.Add(new User { Login = "", Password = "", IsAdmin = true, Email = "@gmail.com" });
-			Users.Add(new User { Login = "admin", Password = "admin", IsAdmin = true, Email = "admin@gmail.com" });
-			Users.Add(new User { Login = "user", Password = "user", IsAdmin = false, Email = "user@gmail.com" });
+			Users.Add(new User { Password = "", IsAdmin = true, Email = "" });
+			Users.Add(new User { Password = "admin", IsAdmin = true, Email = "admin@gmail.com" });
+			Users.Add(new User { Password = "user", IsAdmin = false, Email = "user@gmail.com" });
 
 			var company = new Company { Name = "Company_1", Address = "Address_1" };
 			var site = new Site { Name = "Site_1", Description = "Descr_1", Company = company };

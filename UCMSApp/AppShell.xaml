@@ -3,13 +3,13 @@
     x:Class="UCMSApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:UCMSApp"
-    Shell.FlyoutBehavior="Disabled"
-    Title="UCMSApp">
+    xmlns:local="clr-namespace:UCMSApp.VVM.Auth"
+    Title="UCMSApp"
+    Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Authorization"
+        ContentTemplate="{DataTemplate local:Authorization}"
+        Route="Authorization" />
 
 </Shell>
