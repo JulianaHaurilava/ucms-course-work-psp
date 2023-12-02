@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UCMSApp.VVM.Registration.Registration"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:UCMSApp.VVM.Registration"
+    Title="{Binding Title}"
+    x:DataType="vm:RegistrationViewModel">
+
+    <VerticalStackLayout
+        HorizontalOptions="Center"
+        Spacing="30"
+        VerticalOptions="Center">
+        <Label
+            FontAttributes="Bold"
+            FontSize="30"
+            Text="Регистрация" />
+        <Entry Placeholder="Email" Text="{Binding User.Email}" />
+        <Entry
+            IsPassword="True"
+            Placeholder="Пароль"
+            Text="{Binding User.Password}" />
+        <Entry
+            IsPassword="True"
+            Placeholder="Повторить пароль"
+            Text="{Binding ConfirmPassword}" />
+        <Button
+            Command="{Binding RegisterCommand}"
+            CornerRadius="20"
+            FontAttributes="Bold"
+            Text="Зарегистрироваться" />
+    </VerticalStackLayout>
+</ContentPage>

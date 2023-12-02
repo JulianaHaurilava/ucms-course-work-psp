@@ -74,6 +74,9 @@
 	  <MauiXaml Update="VVM\MainMenu\UserMenu.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="VVM\Registration\Registration.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

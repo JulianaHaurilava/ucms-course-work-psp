@@ -58,9 +58,9 @@ namespace Server
 						//case RequestTypes.GetUsers:
 						//	GetAllUsers();
 						//	break;
-						//case RequestTypes.UpsertUser:
-						//	UpsertUser(request.Message);
-						//	break;
+						case RequestTypes.UpsertUser:
+							UpsertUser(request.Message);
+							break;
 						//case RequestTypes.DeleteUser:
 						//	DeleteUser(request.Message);
 						//	break;
@@ -197,32 +197,32 @@ namespace Server
 		//	SendResponseAsync(response);
 		//}
 
-		//private void UpsertUser(string requestMessage)
-		//{
-		//	var requestUser = JsonConvert.DeserializeObject<User>(requestMessage);
+		private void UpsertUser(string requestMessage)
+		{
+			var requestUser = JsonConvert.DeserializeObject<User>(requestMessage);
 
-		//	var users = userService.GetAll();
-		//	var user = users.Find(u => u.Login.Equals(requestUser.Login, StringComparison.OrdinalIgnoreCase));
-		//	Response response;
-		//	if (user != null)
-		//	{
-		//		if (user.Id != requestUser.Id)
-		//		{
-		//			response = new Response(ResponseTypes.NotOk, "Такой пользователь уже существует");
-		//		}
-		//		else
-		//		{
-		//			userService.Upsert(requestUser);
-		//			response = new Response(ResponseTypes.Ok, "Успешно");
-		//		}
-		//	}
-		//	else
-		//	{
-		//		userService.Upsert(requestUser);
-		//		response = new Response(ResponseTypes.Ok, "Успешно");
-		//	}
-		//	SendResponseAsync(response);
-		//}
+			var users = userService.GetAll();
+			var user = users.Find(u => u.Email.Equals(requestUser.Email, StringComparison.OrdinalIgnoreCase));
+			Response response;
+			if (user != null)
+			{
+				if (user.Id != requestUser.Id)
+				{
+					response = new Response(ResponseTypes.NotOk, "Такой пользователь уже существует");
+				}
+				else
+				{
+					userService.Upsert(requestUser);
+					response = new Response(ResponseTypes.Ok, "Успешно");
+				}
+			}
+			else
+			{
+				userService.Upsert(requestUser);
+				response = new Response(ResponseTypes.Ok, "Успешно");
+			}
+			SendResponseAsync(response);
+		}
 
 		//private void DeleteUser(string requestMessage)
 		//{

@@ -23,7 +23,7 @@ namespace UCMSApp.VVM.Auth
 
         private async Task GoToRegistrationPage()
         {
-            //await Shell.Current.GoToAsync($"{nameof(Registration)}", true);
+            await Shell.Current.GoToAsync($"{nameof(Registration)}", true);
         }
 
         private async Task GoToMainPageAsync(User user)
