@@ -143,7 +143,7 @@ namespace Server
 			var requestUser = JsonConvert.DeserializeObject<User>(requestMessage);
 
 			var users = userService.GetAll();
-			var user = users.Find(u => u.Login.Equals(requestUser.Login, StringComparison.OrdinalIgnoreCase));
+			var user = users.Find(u => u.Email.Equals(requestUser.Email, StringComparison.OrdinalIgnoreCase));
 			Response response;
 			if (user != null)
 			{

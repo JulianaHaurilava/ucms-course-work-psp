@@ -2,6 +2,7 @@
 using System.Net;
 using UCMSApp.Services;
 using UCMSApp.VVM.Auth;
+using UCMSApp.VVM.MainMenu;
 
 namespace UCMSApp
 {
@@ -23,9 +24,17 @@ namespace UCMSApp
             builder.Services.AddSingleton<VVM.Auth.Authorization>();
             builder.Services.AddSingleton<AuthorizationViewModel>();
 
+            builder.Services.AddSingleton<AdminMenu>();
+            builder.Services.AddSingleton<AdminMenuViewModel>();
+            builder.Services.AddSingleton<UserMenu>();
+            builder.Services.AddSingleton<UserMenuViewModel>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
+            Client.Client client = new("127.0.0.1", 5050);
+            client.Connect();
 
             return builder.Build();
         }

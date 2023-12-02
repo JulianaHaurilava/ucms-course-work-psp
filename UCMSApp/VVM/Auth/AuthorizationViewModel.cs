@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
 using UCMSApp.Services;
 using UCMSApp.VVM.Base;
+using UCMSApp.VVM.MainMenu;
 
 namespace UCMSApp.VVM.Auth
 {
@@ -30,20 +31,20 @@ namespace UCMSApp.VVM.Auth
             if (user == null)
                 return;
 
-            //if (user.IsAdmin)
-            //{
-            //    await Shell.Current.GoToAsync($"{nameof(AdminPage)}", true, new Dictionary<string, object>
-            //    {
-            //        {"user", User}
-            //    });
-            //}
-            //else
-            //{
-            //    await Shell.Current.GoToAsync($"{nameof(UserPage)}", true, new Dictionary<string, object>
-            //    {
-            //        {"user", User}
-            //    });
-            //}
+            if (user.IsAdmin)
+            {
+                await Shell.Current.GoToAsync($"{nameof(AdminMenu)}", true, new Dictionary<string, object>
+                {
+                    {"user", User}
+                });
+            }
+            else
+            {
+                await Shell.Current.GoToAsync($"{nameof(UserMenu)}", true, new Dictionary<string, object>
+                {
+                    {"user", User}
+                });
+            }
 
         }
 
