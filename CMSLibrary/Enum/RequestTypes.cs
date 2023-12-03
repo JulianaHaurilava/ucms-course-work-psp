@@ -13,15 +13,15 @@
 		DeleteUser,
 
 		GetCompanies,
-		UpsertCompanies,
-		DeleteCompanies,
+		UpsertCompany,
+		DeleteCompany,
 
 		GetItems,
-		UpsertItems,
-		DeleteItems,
+		UpsertItem,
+		DeleteItem,
 
 		GetCategories,
-        UpsertCategories,
-        DeleteCategories,
+        UpsertCategory,
+        DeleteCategory,
 	}
 }

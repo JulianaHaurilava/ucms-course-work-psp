@@ -17,16 +17,17 @@ namespace CMSLib.Model
 			Database.EnsureDeleted();
 			Database.EnsureCreated();
 
-			Users.Add(new User { Password = "", IsAdmin = true, Email = "" });
-			Users.Add(new User { Password = "admin", IsAdmin = true, Email = "admin@gmail.com" });
+			var company = new Company { Name = "Company_1", Address = "Address_1" };
+
+			Users.Add(new User { Password = "", IsAdmin = true, Email = "", Company = company });
+			Users.Add(new User { Password = "admin", IsAdmin = true, Email = "admin@gmail.com", Company = company });
 			Users.Add(new User { Password = "user", IsAdmin = false, Email = "user@gmail.com" });
 
-			var company = new Company { Name = "Company_1", Address = "Address_1" };
 			var site = new Site { Name = "Site_1", Description = "Descr_1", Company = company };
 			var category = new Category { Name = "Category_1", Description = "", Site = site };
 			var item = new Item { Name = "Item_1", Description = "Descr_1", Price = 1.1, Category = category };
 
-			Companies.Add(company);
+			//Companies.Add(company);
 			Sites.Add(site);
 			Categories.Add(category);
 			Items.Add(item);

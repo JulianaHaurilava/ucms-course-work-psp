@@ -1,6 +1,7 @@
 ﻿using UCMSApp.VVM.Account;
 using UCMSApp.VVM.MainMenu;
 using UCMSApp.VVM.Registration;
+using UCMSApp.VVM.Sites;
 
 namespace UCMSApp
 {
@@ -16,6 +17,9 @@ namespace UCMSApp
 
             Routing.RegisterRoute(nameof(AccountView), typeof(AccountView));
             Routing.RegisterRoute(nameof(EditAccount), typeof(EditAccount));
+
+            Routing.RegisterRoute(nameof(Sites), typeof(Sites));
+            Routing.RegisterRoute(nameof(SiteGeneration), typeof(SiteGeneration));
         }
     }
 }

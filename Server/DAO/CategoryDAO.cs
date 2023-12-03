@@ -1,5 +1,6 @@
 ﻿using CMSLib.DTO;
 using CMSLib.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace Server.DAO
 {
@@ -35,7 +36,7 @@ namespace Server.DAO
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                return db.Categories.ToList();
+                return db.Categories.Include(c => c.Site).ThenInclude(s => s.Company).ToList();
             }
         }
 

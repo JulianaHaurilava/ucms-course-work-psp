@@ -34,21 +34,21 @@ namespace UCMSApp.VVM.MainMenu
         [RelayCommand]
         private async Task GoToSitesViewAsync()
         {
-            //if (IsBusy) return;
-            //try
-            //{
-            //    IsBusy = true;
-            //    await Shell.Current.GoToAsync($"{nameof(UserFilms)}", true);
+            if (IsBusy) return;
+            try
+            {
+                IsBusy = true;
+                await Shell.Current.GoToAsync($"{nameof(Sites)}", true);
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
-            //}
-            //finally
-            //{
-            //    IsBusy = false;
-            //}
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

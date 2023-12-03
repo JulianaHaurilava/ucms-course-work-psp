@@ -45,15 +45,15 @@ namespace Server
 							Login(request.Message);
 							break;
 
-						//case RequestTypes.GetCompanies:
-						//	GetAllCo();
-						//	break;
-						//case RequestTypes.UpsertFilm:
-						//	UpsertFilm(request.Message);
-						//	break;
-						//case RequestTypes.DeleteFilm:
-						//	DeleteFilm(request.Message);
-						//	break;
+						case RequestTypes.GetCompanies:
+							GetAllCompanies();
+							break;
+						case RequestTypes.UpsertCompany:
+							UpsertCompany(request.Message);
+							break;
+						case RequestTypes.DeleteCompany:
+							DeleteCompany(request.Message);
+							break;
 
 						//case RequestTypes.GetUsers:
 						//	GetAllUsers();
@@ -65,15 +65,15 @@ namespace Server
 						//	DeleteUser(request.Message);
 						//	break;
 
-						//case RequestTypes.GetCinemas:
-						//	GetAllCinemas();
-						//	break;
-						//case RequestTypes.UpsertCinema:
-						//	UpsertCinema(request.Message);
-						//	break;
-						//case RequestTypes.DeleteCinema:
-						//	DeleteCinema(request.Message);
-						//	break;
+						case RequestTypes.GetSites:
+                            GetAllSites();
+							break;
+						case RequestTypes.UpsertSite:
+                            UpsertSite(request.Message);
+							break;
+						case RequestTypes.DeleteSite:
+                            DeleteSite(request.Message);
+							break;
 
 						//case RequestTypes.GetHalls:
 						//	GetAllHalls();
@@ -163,31 +163,31 @@ namespace Server
 			SendResponseAsync(response);
 		}
 
-		//private void GetAllFilms()
-		//{
-		//	var films = filmService.GetAll();
-		//	string data = JsonConvert.SerializeObject(films);
-		//	Response response = new Response(ResponseTypes.Ok, "", data);
-		//	SendResponseAsync(response);
-		//}
+		private void GetAllCompanies()
+		{
+			var companies = companyService.GetAll();
+			string data = JsonConvert.SerializeObject(companies);
+			Response response = new Response(ResponseTypes.Ok, "", data);
+			SendResponseAsync(response);
+		}
 
-		//private void UpsertFilm(string requestMessage)
-		//{
-		//	var requestFilm = JsonConvert.DeserializeObject<Film>(requestMessage);
+		private void UpsertCompany(string requestMessage)
+		{
+			var requestCompany = JsonConvert.DeserializeObject<Company>(requestMessage);
 
-		//	filmService.Upsert(requestFilm);
-		//	Response response = new Response(ResponseTypes.Ok, "Фильм успешно добавлен");
-		//	SendResponseAsync(response);
-		//}
+			companyService.Upsert(requestCompany);
+			Response response = new Response(ResponseTypes.Ok, "Компания успешно добавлена");
+			SendResponseAsync(response);
+		}
 
-		//private void DeleteFilm(string requestMessage)
-		//{
-		//	var film = filmService.Get(int.Parse(requestMessage));
+		private void DeleteCompany(string requestMessage)
+		{
+			var company = companyService.Get(int.Parse(requestMessage));
 
-		//	filmService.Remove(film);
-		//	Response response = new Response(ResponseTypes.Ok, "Фильм успешно удален");
-		//	SendResponseAsync(response);
-		//}
+            companyService.Remove(company);
+			Response response = new Response(ResponseTypes.Ok, "Компания успешно удалена");
+			SendResponseAsync(response);
+		}
 
 		//private void GetAllUsers()
 		//{
@@ -233,31 +233,31 @@ namespace Server
 		//	SendResponseAsync(response);
 		//}
 
-		//private void GetAllCinemas()
-		//{
-		//	var Cinemas = cinemaService.GetAll();
-		//	string data = JsonConvert.SerializeObject(Cinemas);
-		//	Response response = new Response(ResponseTypes.Ok, "", data);
-		//	SendResponseAsync(response);
-		//}
-		//private void UpsertCinema(string requestMessage)
-		//{
-		//	var requestCinema = JsonConvert.DeserializeObject<Cinema>(requestMessage);
+		private void GetAllSites()
+		{
+			var sites = siteService.GetAll();
+			string data = JsonConvert.SerializeObject(sites);
+			Response response = new Response(ResponseTypes.Ok, "", data);
+			SendResponseAsync(response);
+		}
+		private void UpsertSite(string requestMessage)
+		{
+			var requestSite = JsonConvert.DeserializeObject<Site>(requestMessage);
 
-		//	cinemaService.Upsert(requestCinema);
-		//	Response response = new Response(ResponseTypes.Ok, "Успешно");
+			siteService.Upsert(requestSite);
+			Response response = new Response(ResponseTypes.Ok, "Успешно");
 
-		//	SendResponseAsync(response);
-		//}
+			SendResponseAsync(response);
+		}
 
-		//private void DeleteCinema(string requestMessage)
-		//{
-		//	var cinema = cinemaService.Get(int.Parse(requestMessage));
+		private void DeleteSite(string requestMessage)
+		{
+			var cinema = siteService.Get(int.Parse(requestMessage));
 
-		//	cinemaService.Remove(cinema);
-		//	Response response = new Response(ResponseTypes.Ok, "Кинотеатр успешно удален");
-		//	SendResponseAsync(response);
-		//}
+			siteService.Remove(cinema);
+			Response response = new Response(ResponseTypes.Ok, "Сайт успешно удален");
+			SendResponseAsync(response);
+		}
 
 		//private void GetAllHalls()
 		//{

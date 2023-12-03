@@ -1,10 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 using System.Net;
 using UCMSApp.Services;
 using UCMSApp.VVM.Account;
 using UCMSApp.VVM.Auth;
 using UCMSApp.VVM.MainMenu;
 using UCMSApp.VVM.Registration;
+using UCMSApp.VVM.Sites;
 
 namespace UCMSApp
 {
@@ -19,7 +21,7 @@ namespace UCMSApp
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+                }).UseMauiCommunityToolkit();
 
 
             builder.Services.AddSingleton<UserService>();
@@ -38,6 +40,12 @@ namespace UCMSApp
             builder.Services.AddTransient<AccountViewModel>();
             builder.Services.AddTransient<EditAccount>();
             builder.Services.AddTransient<EditAccountViewModel>();
+
+            builder.Services.AddSingleton<SiteService>();
+            builder.Services.AddTransient<Sites>();
+            builder.Services.AddTransient<SitesViewModel>();
+            builder.Services.AddTransient<SiteGeneration>();
+            builder.Services.AddTransient<SiteGenerationViewModel>();
 
 
 #if DEBUG
