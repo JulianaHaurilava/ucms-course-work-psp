@@ -75,25 +75,25 @@ namespace Server
                             DeleteSite(request.Message);
 							break;
 
-						//case RequestTypes.GetHalls:
-						//	GetAllHalls();
-						//	break;
-						//case RequestTypes.UpsertHall:
-						//	UpsertHall(request.Message);
-						//	break;
-						//case RequestTypes.DeleteHall:
-						//	DeleteHall(request.Message);
-						//	break;
+						case RequestTypes.GetCategories:
+							GetAllCategories();
+							break;
+						case RequestTypes.UpsertCategory:
+                            UpsertCategory(request.Message);
+							break;
+						case RequestTypes.DeleteCategory:
+                            DeleteCategory(request.Message);
+							break;
 
-						//case RequestTypes.GetSessions:
-						//	GetAllSessions();
-						//	break;
-						//case RequestTypes.UpsertSession:
-						//	UpsertSession(request.Message);
-						//	break;
-						//case RequestTypes.DeleteSession:
-						//	DeleteSession(request.Message);
-						//	break;
+						case RequestTypes.GetItems:
+                            GetAllItems();
+							break;
+						case RequestTypes.UpsertItem:
+                            UpsertItem(request.Message);
+							break;
+						case RequestTypes.DeleteItem:
+							DeleteItem(request.Message);
+							break;
 
 						//case RequestTypes.GetTickets:
 						//	GetAllTickets();
@@ -271,88 +271,89 @@ namespace Server
             SendResponseAsync(response);
         }
 
-        //private void GetAllHalls()
-        //{
-        //	var halls = hallService.GetAll();
-        //	string data = JsonConvert.SerializeObject(halls);
-        //	Response response = new Response(ResponseTypes.Ok, "", data);
-        //	SendResponseAsync(response);
-        //}
 
-        //private void UpsertHall(string requestMessage)
-        //{
-        //	var requestHall = JsonConvert.DeserializeObject<Hall>(requestMessage);
+		private void GetAllCategories()
+		{
+			var categories = categoryService.GetAll();
+			string data = JsonConvert.SerializeObject(categories);
+			Response response = new Response(ResponseTypes.Ok, "", data);
+			SendResponseAsync(response);
+		}
 
-        //	hallService.Upsert(requestHall);
-        //	Response response = new Response(ResponseTypes.Ok, "Успешно");
+		private void UpsertCategory(string requestMessage)
+		{
+			var requestCategory = JsonConvert.DeserializeObject<Category>(requestMessage);
 
-        //	SendResponseAsync(response);
-        //}
+			categoryService.Upsert(requestCategory);
+			Response response = new Response(ResponseTypes.Ok, "Успешно");
 
-        //private void DeleteHall(string requestMessage)
-        //{
-        //	var hall = hallService.Get(int.Parse(requestMessage));
+			SendResponseAsync(response);
+		}
 
-        //	hallService.Remove(hall);
-        //	Response response = new Response(ResponseTypes.Ok, "Зал успешно удален");
-        //	SendResponseAsync(response);
-        //}
+		private void DeleteCategory(string requestMessage)
+		{
+			var category = categoryService.Get(int.Parse(requestMessage));
 
-        //private void GetAllSessions()
-        //{
-        //	var sessions = sessionService.GetAll();
-        //	string data = JsonConvert.SerializeObject(sessions);
-        //	Response response = new Response(ResponseTypes.Ok, "", data);
-        //	SendResponseAsync(response);
-        //}
+            categoryService.Remove(category);
+			Response response = new Response(ResponseTypes.Ok, "Зал успешно удален");
+			SendResponseAsync(response);
+		}
 
-        //private void UpsertSession(string requestMessage)
-        //{
-        //	var requestSession = JsonConvert.DeserializeObject<Session>(requestMessage);
+		private void GetAllItems()
+		{
+			var items = itemService.GetAll();
+			string data = JsonConvert.SerializeObject(items);
+			Response response = new Response(ResponseTypes.Ok, "", data);
+			SendResponseAsync(response);
+		}
 
-        //	sessionService.Upsert(requestSession);
-        //	Response response = new Response(ResponseTypes.Ok, "Успешно");
+		private void UpsertItem(string requestMessage)
+		{
+			var requestItem = JsonConvert.DeserializeObject<Item>(requestMessage);
 
-        //	SendResponseAsync(response);
-        //}
+            itemService.Upsert(requestItem);
+			Response response = new Response(ResponseTypes.Ok, "Успешно");
 
-        //private void DeleteSession(string requestMessage)
-        //{
-        //	var session = sessionService.Get(int.Parse(requestMessage));
+			SendResponseAsync(response);
+		}
 
-        //	sessionService.Remove(session);
-        //	Response response = new Response(ResponseTypes.Ok, "Сеанс успешно удален");
-        //	SendResponseAsync(response);
-        //}
+		private void DeleteItem(string requestMessage)
+		{
+			var item = itemService.Get(int.Parse(requestMessage));
 
-        //private void GetAllTickets()
-        //{
-        //	var tickets = ticketService.GetAll();
-        //	string data = JsonConvert.SerializeObject(tickets);
-        //	Response response = new Response(ResponseTypes.Ok, "", data);
-        //	SendResponseAsync(response);
-        //}
+            itemService.Remove(item);
+			Response response = new Response(ResponseTypes.Ok, "Сеанс успешно удален");
+			SendResponseAsync(response);
+		}
 
-        //private void UpsertTicket(string requestMessage)
-        //{
-        //	var requestTicket = JsonConvert.DeserializeObject<Ticket>(requestMessage);
+		//private void GetAllTickets()
+		//{
+		//	var tickets = ticketService.GetAll();
+		//	string data = JsonConvert.SerializeObject(tickets);
+		//	Response response = new Response(ResponseTypes.Ok, "", data);
+		//	SendResponseAsync(response);
+		//}
 
-        //	ticketService.Upsert(requestTicket);
-        //	Response response = new Response(ResponseTypes.Ok, "Успешно");
+		//private void UpsertTicket(string requestMessage)
+		//{
+		//	var requestTicket = JsonConvert.DeserializeObject<Ticket>(requestMessage);
 
-        //	SendResponseAsync(response);
-        //}
+		//	ticketService.Upsert(requestTicket);
+		//	Response response = new Response(ResponseTypes.Ok, "Успешно");
 
-        //private void DeleteTicket(string requestMessage)
-        //{
-        //	var ticket = ticketService.Get(int.Parse(requestMessage));
+		//	SendResponseAsync(response);
+		//}
 
-        //	ticketService.Remove(ticket);
-        //	Response response = new Response(ResponseTypes.Ok, "Билет успешно удален");
-        //	SendResponseAsync(response);
-        //}
+		//private void DeleteTicket(string requestMessage)
+		//{
+		//	var ticket = ticketService.Get(int.Parse(requestMessage));
 
-        private void Close()
+		//	ticketService.Remove(ticket);
+		//	Response response = new Response(ResponseTypes.Ok, "Билет успешно удален");
+		//	SendResponseAsync(response);
+		//}
+
+		private void Close()
 		{
 			writer.Close();
 			reader.Close();

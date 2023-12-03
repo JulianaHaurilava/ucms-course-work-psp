@@ -48,7 +48,7 @@ namespace UCMSApp.VVM.Sites
             {
                 await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
             }
-}
+        }
 
         [RelayCommand]
         private async Task GenerateSiteAsync(Site site)

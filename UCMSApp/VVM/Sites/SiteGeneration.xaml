@@ -9,26 +9,41 @@
     Title="{Binding Title}"
     x:DataType="vm:SiteGenerationViewModel">
 
-    <VerticalStackLayout
-        HorizontalOptions="CenterAndExpand"
-        Spacing="20"
-        VerticalOptions="Center">
-        <Label
-            FontAttributes="Bold"
-            FontSize="Large"
-            Text="Редактировать пользователя"
-            TextColor="White" />
-        <Entry Placeholder="Название" Text="{Binding Site.Name}" />
-        <Entry Placeholder="Описание" Text="{Binding Site.Description}" />
-        <Entry Placeholder="URL" Text="{Binding Site.Url}" />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <Button
-            Command="{Binding GenerateSiteCommand}"
-            FontAttributes="Bold"
-            Text="Сгенерировать" />
-        <Button
-            Command="{Binding UpsertSiteCommand}"
-            FontAttributes="Bold"
-            Text="Подтвердить" />
-    </VerticalStackLayout>
+        <VerticalStackLayout
+            Grid.Column="0"
+            HorizontalOptions="CenterAndExpand"
+            Spacing="20"
+            VerticalOptions="Center">
+            <Label
+                FontAttributes="Bold"
+                FontSize="Large"
+                Text="Редактировать пользователя"
+                TextColor="White" />
+            <Entry Placeholder="Название" Text="{Binding Site.Name}" />
+            <Entry Placeholder="Описание" Text="{Binding Site.Description}" />
+            <Entry Placeholder="URL" Text="{Binding Site.Url}" />
+
+            <Button
+                Command="{Binding GenerateSiteCommand}"
+                FontAttributes="Bold"
+                Text="Сгенерировать" />
+            <Button
+                Command="{Binding UpsertSiteCommand}"
+                FontAttributes="Bold"
+                Text="Подтвердить" />
+        </VerticalStackLayout>
+        <!--<ListView
+            Grid.Column="1"
+            ItemsSource="{Binding Categories}"
+            SelectedItem="{Binding SelectedCategory}" />-->
+    </Grid>
+
+
 </ContentPage>
