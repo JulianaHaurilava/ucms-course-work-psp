@@ -16,7 +16,7 @@
             FontSize="Large"
             Text="Редактировать аккаунт"
             TextColor="White" />
-        <Entry Placeholder="Логин" Text="{Binding User.Company}" />
+        <Entry Placeholder="Логин" Text="{Binding User.Company.Name}" />
         <Entry Placeholder="Email" Text="{Binding User.Email}" />
         <Entry Placeholder="Пароль" Text="{Binding User.Password}" />
 
