@@ -8,14 +8,23 @@
     xmlns:vm="clr-namespace:UCMSApp.VVM.Sites"
     Title="{Binding Title}"
     x:DataType="vm:SiteGenerationViewModel">
-    <!--<ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior Command="{Binding LoadElementsCommand}" EventName="NavigatedTo" />
-    </ContentPage.Behaviors>-->
 
-    <VerticalStackLayout>
+    <VerticalStackLayout
+        HorizontalOptions="CenterAndExpand"
+        Spacing="20"
+        VerticalOptions="Center">
         <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
+            FontAttributes="Bold"
+            FontSize="Large"
+            Text="Редактировать пользователя"
+            TextColor="White" />
+        <Entry Placeholder="Название" Text="{Binding Site.Name}" />
+        <Entry Placeholder="Описание" Text="{Binding Site.Description}" />
+        <Entry Placeholder="URL" Text="{Binding Site.Url}" />
+
+        <Button
+            Command="{Binding UpsertSiteCommand}"
+            FontAttributes="Bold"
+            Text="Подтвердить" />
     </VerticalStackLayout>
 </ContentPage>
