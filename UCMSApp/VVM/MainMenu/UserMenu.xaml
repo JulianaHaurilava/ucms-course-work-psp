@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="UCMSApp.VVM.MainMenu.UserMenu"
-             Title="UserMenu">
-    <VerticalStackLayout>
-        <Label
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center"
-            HorizontalOptions="Center" />
+<ContentPage
+    x:Class="UCMSApp.VVM.MainMenu.UserMenu"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:UCMSApp.VVM.MainMenu"
+    Title="{Binding Title}"
+    x:DataType="vm:UserMenuViewModel">
+    <VerticalStackLayout Spacing="10" VerticalOptions="CenterAndExpand">
+        <Button
+            Command="{Binding GoToAccountViewCommand}"
+            FontAttributes="Bold"
+            Text="Аккаунт"
+            WidthRequest="200" />
+        <Button
+            Command="{Binding GoToSitesViewCommand}"
+            FontAttributes="Bold"
+            Text="Сайты"
+            WidthRequest="200" />
     </VerticalStackLayout>
 </ContentPage>

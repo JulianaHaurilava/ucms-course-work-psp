@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UCMSApp.VVM.Account.AccountView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:UCMSApp.VVM.Account"
+    Title="{Binding Title}"
+    x:DataType="vm:AccountViewModel">
+    <VerticalStackLayout
+        HorizontalOptions="CenterAndExpand"
+        Spacing="10"
+        VerticalOptions="CenterAndExpand"
+        WidthRequest="200">
+        <Label Text="{Binding Account.Company.Name, StringFormat='Компания: {0}'}" />
+        <Label Text="{Binding Account.Email, StringFormat='Email: {0}'}" />
+        <Label Text="{Binding Account.Password, StringFormat='Пароль: {0}'}" />
+        <Label Text="{Binding Account.IsAdmin, StringFormat='Статус: {0}'}" />
+        <Button Command="{Binding UpsertElementCommand}" Text="Изменить" />
+    </VerticalStackLayout>
+</ContentPage>

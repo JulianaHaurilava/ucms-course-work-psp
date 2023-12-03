@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Net;
 using UCMSApp.Services;
+using UCMSApp.VVM.Account;
 using UCMSApp.VVM.Auth;
 using UCMSApp.VVM.MainMenu;
 using UCMSApp.VVM.Registration;
@@ -32,6 +33,9 @@ namespace UCMSApp
             builder.Services.AddSingleton<AdminMenuViewModel>();
             builder.Services.AddSingleton<UserMenu>();
             builder.Services.AddSingleton<UserMenuViewModel>();
+
+            builder.Services.AddSingleton<AccountView>();
+            builder.Services.AddSingleton<AccountViewModel>();
 
 
 #if DEBUG

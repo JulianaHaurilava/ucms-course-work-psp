@@ -1,4 +1,5 @@
-﻿using UCMSApp.VVM.MainMenu;
+﻿using UCMSApp.VVM.Account;
+using UCMSApp.VVM.MainMenu;
 using UCMSApp.VVM.Registration;
 
 namespace UCMSApp
@@ -12,6 +13,7 @@ namespace UCMSApp
             Routing.RegisterRoute(nameof(AdminMenu), typeof(AdminMenu));
             Routing.RegisterRoute(nameof(UserMenu), typeof(UserMenu));
             Routing.RegisterRoute(nameof(Registration), typeof(Registration));
+            Routing.RegisterRoute(nameof(AccountView), typeof(AccountView));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UCMSApp.VVM.Base;
+﻿using CommunityToolkit.Mvvm.Input;
+using UCMSApp.VVM.Base;
 
 namespace UCMSApp.VVM.MainMenu
 {
@@ -6,7 +7,67 @@ namespace UCMSApp.VVM.MainMenu
     {
         public AdminMenuViewModel()
         {
-            Title = "Панель администратора";
+            Title = "Панель руководителя";
+        }
+
+        [RelayCommand]
+        private async Task GoToCompanyViewAsync()
+        {
+            //if (IsBusy) return;
+            //try
+            //{
+            //    IsBusy = true;
+            //    await Shell.Current.GoToAsync($"{nameof(Users)}", true);
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
+            //}
+            //finally
+            //{
+            //    IsBusy = false;
+            //}
+        }
+
+        [RelayCommand]
+        private async Task GoToSamplesViewAsync()
+        {
+            //if (IsBusy) return;
+            //try
+            //{
+            //    IsBusy = true;
+            //    await Shell.Current.GoToAsync($"{nameof(Cinemas)}", true);
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
+            //}
+            //finally
+            //{
+            //    IsBusy = false;
+            //}
+        }
+
+        [RelayCommand]
+        private async Task GoToUserMenuViewAsync()
+        {
+            if (IsBusy) return;
+            try
+            {
+                IsBusy = true;
+                await Shell.Current.GoToAsync($"{nameof(UserMenu)}", true);
+
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }
