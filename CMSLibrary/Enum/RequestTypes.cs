@@ -7,6 +7,7 @@
 		GetSites,
 		UpsertSite,
 		DeleteSite,
+		GenerateSite,
 
 		GetUsers,
 		UpsertUser,

@@ -48,5 +48,42 @@ namespace Server.DAO
                 db.SaveChanges();
             }
         }
+
+        public void GenerateSite(Site site)
+        {
+            string folderPath = Directory.GetCurrentDirectory() + "/" + "sites";
+
+            try
+            {
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                string fileName = site.Name + ".html";
+                string filePath = Path.Combine(folderPath, fileName);
+
+                File.WriteAllText(filePath, GenerateHTML(site.Name, site.Description));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при создании папки: {ex.Message}");
+            }
+        }
+
+        private string GenerateHTML(string name, string description)
+        {
+            string html = $@"<!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>{name}</title>
+                    </head>
+                    <body>
+                        <h1>{name}</h1>
+                        <p>{description}</p>
+                    </body>
+                    </html>";
+            return html;
+        }
     }
 }

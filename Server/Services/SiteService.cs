@@ -25,5 +25,10 @@ namespace Server.Services
         {
             dao.Remove(item);
         }
+
+        public void GenerateSite(Site site)
+        {
+            dao.GenerateSite(site);
+        }
     }
 }

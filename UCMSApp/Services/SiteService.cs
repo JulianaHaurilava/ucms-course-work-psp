@@ -75,5 +75,21 @@ namespace UCMSApp.Services
                 return null;
             }
         }
+
+        public async Task<Response> GenerateSite(Site site)
+        {
+            try
+            {
+                var data = JsonConvert.SerializeObject(site);
+                await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.GenerateSite, data));
+                var response = await Client.Client.Instance.GetResponseAsync();
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
     }
 }

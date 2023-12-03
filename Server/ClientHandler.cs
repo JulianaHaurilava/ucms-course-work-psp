@@ -104,6 +104,9 @@ namespace Server
 						//case RequestTypes.DeleteTicket:
 						//	DeleteTicket(request.Message);
 						//	break;
+						case RequestTypes.GenerateSite:
+							GenerateSite(request.Message);
+							break;
 
 						default:
 							Console.WriteLine("Unknown request type");
@@ -259,88 +262,97 @@ namespace Server
 			SendResponseAsync(response);
 		}
 
-		//private void GetAllHalls()
-		//{
-		//	var halls = hallService.GetAll();
-		//	string data = JsonConvert.SerializeObject(halls);
-		//	Response response = new Response(ResponseTypes.Ok, "", data);
-		//	SendResponseAsync(response);
-		//}
+        private void GenerateSite(string requestMessage)
+        {
+            var siteToGenerate = JsonConvert.DeserializeObject<Site>(requestMessage);
+			siteService.GenerateSite(siteToGenerate);
 
-		//private void UpsertHall(string requestMessage)
-		//{
-		//	var requestHall = JsonConvert.DeserializeObject<Hall>(requestMessage);
+            Response response = new Response(ResponseTypes.Ok, "Сайт успешно сгенерирован!");
+            SendResponseAsync(response);
+        }
 
-		//	hallService.Upsert(requestHall);
-		//	Response response = new Response(ResponseTypes.Ok, "Успешно");
+        //private void GetAllHalls()
+        //{
+        //	var halls = hallService.GetAll();
+        //	string data = JsonConvert.SerializeObject(halls);
+        //	Response response = new Response(ResponseTypes.Ok, "", data);
+        //	SendResponseAsync(response);
+        //}
 
-		//	SendResponseAsync(response);
-		//}
+        //private void UpsertHall(string requestMessage)
+        //{
+        //	var requestHall = JsonConvert.DeserializeObject<Hall>(requestMessage);
 
-		//private void DeleteHall(string requestMessage)
-		//{
-		//	var hall = hallService.Get(int.Parse(requestMessage));
+        //	hallService.Upsert(requestHall);
+        //	Response response = new Response(ResponseTypes.Ok, "Успешно");
 
-		//	hallService.Remove(hall);
-		//	Response response = new Response(ResponseTypes.Ok, "Зал успешно удален");
-		//	SendResponseAsync(response);
-		//}
+        //	SendResponseAsync(response);
+        //}
 
-		//private void GetAllSessions()
-		//{
-		//	var sessions = sessionService.GetAll();
-		//	string data = JsonConvert.SerializeObject(sessions);
-		//	Response response = new Response(ResponseTypes.Ok, "", data);
-		//	SendResponseAsync(response);
-		//}
+        //private void DeleteHall(string requestMessage)
+        //{
+        //	var hall = hallService.Get(int.Parse(requestMessage));
 
-		//private void UpsertSession(string requestMessage)
-		//{
-		//	var requestSession = JsonConvert.DeserializeObject<Session>(requestMessage);
+        //	hallService.Remove(hall);
+        //	Response response = new Response(ResponseTypes.Ok, "Зал успешно удален");
+        //	SendResponseAsync(response);
+        //}
 
-		//	sessionService.Upsert(requestSession);
-		//	Response response = new Response(ResponseTypes.Ok, "Успешно");
+        //private void GetAllSessions()
+        //{
+        //	var sessions = sessionService.GetAll();
+        //	string data = JsonConvert.SerializeObject(sessions);
+        //	Response response = new Response(ResponseTypes.Ok, "", data);
+        //	SendResponseAsync(response);
+        //}
 
-		//	SendResponseAsync(response);
-		//}
+        //private void UpsertSession(string requestMessage)
+        //{
+        //	var requestSession = JsonConvert.DeserializeObject<Session>(requestMessage);
 
-		//private void DeleteSession(string requestMessage)
-		//{
-		//	var session = sessionService.Get(int.Parse(requestMessage));
+        //	sessionService.Upsert(requestSession);
+        //	Response response = new Response(ResponseTypes.Ok, "Успешно");
 
-		//	sessionService.Remove(session);
-		//	Response response = new Response(ResponseTypes.Ok, "Сеанс успешно удален");
-		//	SendResponseAsync(response);
-		//}
+        //	SendResponseAsync(response);
+        //}
 
-		//private void GetAllTickets()
-		//{
-		//	var tickets = ticketService.GetAll();
-		//	string data = JsonConvert.SerializeObject(tickets);
-		//	Response response = new Response(ResponseTypes.Ok, "", data);
-		//	SendResponseAsync(response);
-		//}
+        //private void DeleteSession(string requestMessage)
+        //{
+        //	var session = sessionService.Get(int.Parse(requestMessage));
 
-		//private void UpsertTicket(string requestMessage)
-		//{
-		//	var requestTicket = JsonConvert.DeserializeObject<Ticket>(requestMessage);
+        //	sessionService.Remove(session);
+        //	Response response = new Response(ResponseTypes.Ok, "Сеанс успешно удален");
+        //	SendResponseAsync(response);
+        //}
 
-		//	ticketService.Upsert(requestTicket);
-		//	Response response = new Response(ResponseTypes.Ok, "Успешно");
+        //private void GetAllTickets()
+        //{
+        //	var tickets = ticketService.GetAll();
+        //	string data = JsonConvert.SerializeObject(tickets);
+        //	Response response = new Response(ResponseTypes.Ok, "", data);
+        //	SendResponseAsync(response);
+        //}
 
-		//	SendResponseAsync(response);
-		//}
+        //private void UpsertTicket(string requestMessage)
+        //{
+        //	var requestTicket = JsonConvert.DeserializeObject<Ticket>(requestMessage);
 
-		//private void DeleteTicket(string requestMessage)
-		//{
-		//	var ticket = ticketService.Get(int.Parse(requestMessage));
+        //	ticketService.Upsert(requestTicket);
+        //	Response response = new Response(ResponseTypes.Ok, "Успешно");
 
-		//	ticketService.Remove(ticket);
-		//	Response response = new Response(ResponseTypes.Ok, "Билет успешно удален");
-		//	SendResponseAsync(response);
-		//}
+        //	SendResponseAsync(response);
+        //}
 
-		private void Close()
+        //private void DeleteTicket(string requestMessage)
+        //{
+        //	var ticket = ticketService.Get(int.Parse(requestMessage));
+
+        //	ticketService.Remove(ticket);
+        //	Response response = new Response(ResponseTypes.Ok, "Билет успешно удален");
+        //	SendResponseAsync(response);
+        //}
+
+        private void Close()
 		{
 			writer.Close();
 			reader.Close();

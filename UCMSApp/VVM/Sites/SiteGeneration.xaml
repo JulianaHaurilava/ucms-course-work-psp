@@ -23,6 +23,10 @@
         <Entry Placeholder="URL" Text="{Binding Site.Url}" />
 
         <Button
+            Command="{Binding GenerateSiteCommand}"
+            FontAttributes="Bold"
+            Text="Сгенерировать" />
+        <Button
             Command="{Binding UpsertSiteCommand}"
             FontAttributes="Bold"
             Text="Подтвердить" />
