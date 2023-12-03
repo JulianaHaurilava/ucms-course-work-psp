@@ -17,10 +17,10 @@ namespace UCMSApp.VVM.Account
 
         public async Task GoToAddElementPageAsync(User user)
         {
-            //await Shell.Current.GoToAsync($"{nameof(EditUserForUser)}", true, new Dictionary<string, object>
-            //{
-            //    {"User", user}
-            //});
+            await Shell.Current.GoToAsync($"{nameof(EditAccount)}", true, new Dictionary<string, object>
+            {
+                {"User", user}
+            });
         }
 
         [RelayCommand]

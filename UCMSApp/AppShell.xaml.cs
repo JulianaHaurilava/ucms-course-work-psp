@@ -13,7 +13,9 @@ namespace UCMSApp
             Routing.RegisterRoute(nameof(AdminMenu), typeof(AdminMenu));
             Routing.RegisterRoute(nameof(UserMenu), typeof(UserMenu));
             Routing.RegisterRoute(nameof(Registration), typeof(Registration));
+
             Routing.RegisterRoute(nameof(AccountView), typeof(AccountView));
+            Routing.RegisterRoute(nameof(EditAccount), typeof(EditAccount));
         }
     }
 }

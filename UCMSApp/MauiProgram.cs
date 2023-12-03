@@ -26,16 +26,18 @@ namespace UCMSApp
             builder.Services.AddSingleton<VVM.Auth.Authorization>();
             builder.Services.AddSingleton<AuthorizationViewModel>();
 
-            builder.Services.AddSingleton<Registration>();
-            builder.Services.AddSingleton<RegistrationViewModel>();
+            builder.Services.AddTransient<Registration>();
+            builder.Services.AddTransient<RegistrationViewModel>();
 
             builder.Services.AddSingleton<AdminMenu>();
             builder.Services.AddSingleton<AdminMenuViewModel>();
             builder.Services.AddSingleton<UserMenu>();
             builder.Services.AddSingleton<UserMenuViewModel>();
 
-            builder.Services.AddSingleton<AccountView>();
-            builder.Services.AddSingleton<AccountViewModel>();
+            builder.Services.AddTransient<AccountView>();
+            builder.Services.AddTransient<AccountViewModel>();
+            builder.Services.AddTransient<EditAccount>();
+            builder.Services.AddTransient<EditAccountViewModel>();
 
 
 #if DEBUG

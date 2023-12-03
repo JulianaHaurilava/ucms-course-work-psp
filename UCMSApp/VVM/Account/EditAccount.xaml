@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UCMSApp.VVM.Account.EditAccount"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:UCMSApp.VVM.Account"
+    Title="{Binding Title}"
+    x:DataType="vm:EditAccountViewModel">
+
+    <VerticalStackLayout
+        HorizontalOptions="CenterAndExpand"
+        Spacing="20"
+        VerticalOptions="Center">
+        <Label
+            FontAttributes="Bold"
+            FontSize="Large"
+            Text="Редактировать аккаунт"
+            TextColor="White" />
+        <Entry Placeholder="Логин" Text="{Binding User.Company}" />
+        <Entry Placeholder="Email" Text="{Binding User.Email}" />
+        <Entry Placeholder="Пароль" Text="{Binding User.Password}" />
+
+        <Button
+            Command="{Binding UpsertUserCommand}"
+            FontAttributes="Bold"
+            Text="Подтвердить" />
+    </VerticalStackLayout>
+</ContentPage>

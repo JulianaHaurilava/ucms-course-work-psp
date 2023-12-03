@@ -2,6 +2,7 @@
 using CMSLib.Enum;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Net;
 using UCMSApp.Services;
 using UCMSApp.VVM.Base;
 using UCMSApp.VVM.MainMenu;
@@ -39,7 +40,7 @@ namespace UCMSApp.VVM.Registration
                 var response = await userService.UpsertAsync(User);
                 if (response.Type == ResponseTypes.Ok)
                 {
-                    await GoToUserMainMenu(User);
+                    await Shell.Current.Navigation.PopAsync(true);
                 }
                 else
                 {
@@ -56,12 +57,12 @@ namespace UCMSApp.VVM.Registration
             }
         }
 
-        private async Task GoToUserMainMenu(User user)
-        {
-            if (user == null)
-                return;
+        //private async Task GoToAuthView(User user)
+        //{
+        //    if (user == null)
+        //        return;
 
-            await Shell.Current.GoToAsync($"{nameof(UserMenu)}", true);
-        }
+        //    await Shell.Current.Navigation.PopAsync(true);
+        //}
     }
 }
