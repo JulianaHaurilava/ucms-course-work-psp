@@ -55,15 +55,15 @@ namespace Server
 							DeleteCompany(request.Message);
 							break;
 
-						//case RequestTypes.GetUsers:
-						//	GetAllUsers();
-						//	break;
+						case RequestTypes.GetUsers:
+							GetAllUsers();
+							break;
 						case RequestTypes.UpsertUser:
 							UpsertUser(request.Message);
 							break;
-						//case RequestTypes.DeleteUser:
-						//	DeleteUser(request.Message);
-						//	break;
+						case RequestTypes.DeleteUser:
+							DeleteUser(request.Message);
+							break;
 
 						case RequestTypes.GetSites:
                             GetAllSites();
@@ -184,13 +184,13 @@ namespace Server
 			SendResponseAsync(response);
 		}
 
-		//private void GetAllUsers()
-		//{
-		//	var users = userService.GetAll();
-		//	string data = JsonConvert.SerializeObject(users);
-		//	Response response = new Response(ResponseTypes.Ok, "", data);
-		//	SendResponseAsync(response);
-		//}
+		private void GetAllUsers()
+		{
+			var users = userService.GetAll();
+			string data = JsonConvert.SerializeObject(users);
+			Response response = new Response(ResponseTypes.Ok, "", data);
+			SendResponseAsync(response);
+		}
 
 		private void UpsertUser(string requestMessage)
 		{
@@ -219,14 +219,14 @@ namespace Server
 			SendResponseAsync(response);
 		}
 
-		//private void DeleteUser(string requestMessage)
-		//{
-		//	var user = userService.Get(int.Parse(requestMessage));
+		private void DeleteUser(string requestMessage)
+		{
+			var user = userService.Get(int.Parse(requestMessage));
 
-		//	userService.Remove(user);
-		//	Response response = new Response(ResponseTypes.Ok, "Пользователь успешно удален");
-		//	SendResponseAsync(response);
-		//}
+			userService.Remove(user);
+			Response response = new Response(ResponseTypes.Ok, "Пользователь успешно удален");
+			SendResponseAsync(response);
+		}
 
 		private void GetAllSites()
 		{

@@ -42,6 +42,9 @@ namespace UCMSApp
             builder.Services.AddTransient<EditAccount>();
             builder.Services.AddTransient<EditAccountViewModel>();
 
+            builder.Services.AddTransient<CompanyAccounts>();
+            builder.Services.AddTransient<CompanyAccountsViewModel>();
+
             builder.Services.AddSingleton<SiteService>();
             builder.Services.AddTransient<Sites>();
             builder.Services.AddTransient<SitesViewModel>();

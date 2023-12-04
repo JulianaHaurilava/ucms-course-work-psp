@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using UCMSApp.VVM.Account;
 using UCMSApp.VVM.Base;
 
 namespace UCMSApp.VVM.MainMenu
@@ -13,21 +14,21 @@ namespace UCMSApp.VVM.MainMenu
         [RelayCommand]
         private async Task GoToCompanyViewAsync()
         {
-            //if (IsBusy) return;
-            //try
-            //{
-            //    IsBusy = true;
-            //    await Shell.Current.GoToAsync($"{nameof(Users)}", true);
+            if (IsBusy) return;
+            try
+            {
+                IsBusy = true;
+                await Shell.Current.GoToAsync($"{nameof(CompanyAccounts)}", true);
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
-            //}
-            //finally
-            //{
-            //    IsBusy = false;
-            //}
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         [RelayCommand]
