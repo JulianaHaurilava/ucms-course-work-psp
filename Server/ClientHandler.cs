@@ -19,6 +19,7 @@ namespace Server
 		private CompanyService companyService = new();
 		private SiteService siteService = new();
 		private ItemService itemService = new();
+		private TemplateService templateService = new();
 
 		public ClientHandler(Server server, TcpClient client)
 		{

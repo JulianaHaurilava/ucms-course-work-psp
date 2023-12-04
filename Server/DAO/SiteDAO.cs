@@ -63,7 +63,7 @@ namespace Server.DAO
                 string fileName = site.Name + ".html";
                 string filePath = Path.Combine(folderPath, fileName);
 
-                File.WriteAllText(filePath, GenerateHTML(site.Name, site.Description));
+                File.WriteAllText(filePath, GenerateHTML(site.Name, site.Description, site.Template.TemplateCode));
             }
             catch (Exception ex)
             {
@@ -71,19 +71,9 @@ namespace Server.DAO
             }
         }
 
-        private string GenerateHTML(string name, string description)
+        private string GenerateHTML(string name, string description, string template)
         {
-            string html = $@"<!DOCTYPE html>
-                    <html>
-                    <head>
-                        <title>{name}</title>
-                    </head>
-                    <body>
-                        <h1>{name}</h1>
-                        <p>{description}</p>
-                    </body>
-                    </html>";
-            return html;
+            return string.Format(template, name, description);
         }
     }
 }

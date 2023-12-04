@@ -21,8 +21,8 @@
 		UpsertItem,
 		DeleteItem,
 
-		GetCategories,
-        UpsertCategory,
-        DeleteCategory,
+		GetTemplates,
+        UpsertTemplate,
+        DeleteTemplate,
 	}
 }
