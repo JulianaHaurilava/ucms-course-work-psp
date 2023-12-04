@@ -14,47 +14,17 @@ namespace UCMSApp.VVM.Sites
         [ObservableProperty] private CMSLib.DTO.Site site;
 
         private SiteService siteService;
-        private CategoryService categoryService;
         private ItemService itemService;
 
-        public ObservableCollection<Category> Categories;
-        public Category SelectedCategory;
-
         public ObservableCollection<Item> Items;
-        public Category SelectedItem;
 
-        /// <summary>
-        /// АААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААа
-        /// </summary>
-        /// <param name="siteService"></param>
-        /// <param name="categoryService"></param>
-        /// <param name="itemService"></param>
-        public SiteGenerationViewModel(SiteService siteService, CategoryService categoryService, ItemService itemService)
+        public SiteGenerationViewModel(SiteService siteService, ItemService itemService)
         {
             Title = "Редактирование сайта";
             this.siteService = siteService;
-            this.categoryService = categoryService;
             this.itemService = itemService;
         }
 
-        [RelayCommand]
-        public async Task LoadCategoriesAsync()
-        {
-            try
-            {
-                List<Category> loadedCategories = await categoryService.GetAllAsync();
-
-                if (loadedCategories.Count == 0)
-                    return;
-
-                loadedCategories = loadedCategories.Where(c => c.Site.Id == Site.Id).ToList();
-                Categories = new ObservableCollection<Category>(loadedCategories);
-            }
-            catch (Exception ex)
-            {
-                await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
-            }
-        }
 
         [RelayCommand]
         public async Task LoadItemsAsync()
@@ -66,7 +36,7 @@ namespace UCMSApp.VVM.Sites
                 if (loadedItems.Count == 0)
                     return;
 
-                loadedItems = loadedItems.Where(c => c.Category.Id == SelectedCategory.Id).ToList();
+                loadedItems = loadedItems.Where(c => c.Site.Id == site.Id).ToList();
                 Items = new ObservableCollection<Item>(loadedItems);
             }
             catch (Exception ex)

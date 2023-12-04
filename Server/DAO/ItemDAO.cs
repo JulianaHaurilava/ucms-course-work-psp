@@ -36,7 +36,7 @@ namespace Server.DAO
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                return db.Items.Include(i => i.Category).ThenInclude(c => c.Site).ThenInclude(s => s.Company).ToList();
+                return db.Items.Include(c => c.Site).ThenInclude(s => s.Company).ToList();
             }
         }
 

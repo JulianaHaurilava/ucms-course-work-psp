@@ -47,7 +47,6 @@ namespace UCMSApp
             builder.Services.AddTransient<SiteGeneration>();
             builder.Services.AddTransient<SiteGenerationViewModel>();
 
-            builder.Services.AddSingleton<CategoryService>();
             builder.Services.AddSingleton<ItemService>();
 
 

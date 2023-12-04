@@ -8,7 +8,6 @@ namespace CMSLib.Model
 		public DbSet<User> Users { get; set; } = null!;
 		public DbSet<Company> Companies { get; set; } = null!;
 		public DbSet<Site> Sites { get; set; } = null!;
-		public DbSet<Category> Categories { get; set; } = null!;
 		public DbSet<Item> Items { get; set; } = null!;
 
 
@@ -24,12 +23,9 @@ namespace CMSLib.Model
 			Users.Add(new User { Password = "user", IsAdmin = false, Email = "user@gmail.com" });
 
 			var site = new Site { Name = "Site_1", Description = "Descr_1", Company = company };
-			var category = new Category { Name = "Category_1", Description = "", Site = site };
-			var item = new Item { Name = "Item_1", Description = "Descr_1", Price = 1.1, Category = category };
+			var item = new Item { Name = "Item_1", Description = "Descr_1", Price = 1.1, Site = site };
 
-			//Companies.Add(company);
 			Sites.Add(site);
-			Categories.Add(category);
 			Items.Add(item);
         }
 

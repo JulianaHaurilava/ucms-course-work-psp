@@ -18,7 +18,6 @@ namespace Server
 		private UserService userService = new();
 		private CompanyService companyService = new();
 		private SiteService siteService = new();
-		private CategoryService categoryService = new();
 		private ItemService itemService = new();
 
 		public ClientHandler(Server server, TcpClient client)
@@ -73,16 +72,6 @@ namespace Server
 							break;
 						case RequestTypes.DeleteSite:
                             DeleteSite(request.Message);
-							break;
-
-						case RequestTypes.GetCategories:
-							GetAllCategories();
-							break;
-						case RequestTypes.UpsertCategory:
-                            UpsertCategory(request.Message);
-							break;
-						case RequestTypes.DeleteCategory:
-                            DeleteCategory(request.Message);
 							break;
 
 						case RequestTypes.GetItems:
@@ -270,34 +259,7 @@ namespace Server
             Response response = new Response(ResponseTypes.Ok, "Сайт успешно сгенерирован!");
             SendResponseAsync(response);
         }
-
-
-		private void GetAllCategories()
-		{
-			var categories = categoryService.GetAll();
-			string data = JsonConvert.SerializeObject(categories);
-			Response response = new Response(ResponseTypes.Ok, "", data);
-			SendResponseAsync(response);
-		}
-
-		private void UpsertCategory(string requestMessage)
-		{
-			var requestCategory = JsonConvert.DeserializeObject<Category>(requestMessage);
-
-			categoryService.Upsert(requestCategory);
-			Response response = new Response(ResponseTypes.Ok, "Успешно");
-
-			SendResponseAsync(response);
-		}
-
-		private void DeleteCategory(string requestMessage)
-		{
-			var category = categoryService.Get(int.Parse(requestMessage));
-
-            categoryService.Remove(category);
-			Response response = new Response(ResponseTypes.Ok, "Зал успешно удален");
-			SendResponseAsync(response);
-		}
+		
 
 		private void GetAllItems()
 		{
