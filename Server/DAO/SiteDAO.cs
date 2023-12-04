@@ -1,6 +1,8 @@
 ﻿using CMSLib.DTO;
 using CMSLib.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
+using Server.Services;
 
 namespace Server.DAO
 {
@@ -36,7 +38,7 @@ namespace Server.DAO
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                return db.Sites.Include(s => s.Company).ToList();
+                return db.Sites.Include(s => s.Company).Include(s => s.Template).ToList();
             }
         }
 
@@ -63,7 +65,7 @@ namespace Server.DAO
                 string fileName = site.Name + ".html";
                 string filePath = Path.Combine(folderPath, fileName);
 
-                File.WriteAllText(filePath, GenerateHTML(site.Name, site.Description, site.Template.TemplateCode));
+                File.WriteAllText(filePath, GenerateHTML(site));
             }
             catch (Exception ex)
             {
@@ -71,9 +73,20 @@ namespace Server.DAO
             }
         }
 
-        private string GenerateHTML(string name, string description, string template)
+        private string GenerateHTML(Site site)
         {
-            return string.Format(template, name, description);
+            string html = string.Format(site.Template.HeaderCode, site.Name, site.Description);
+
+            ItemService itemService = new();
+            List<Item> items = itemService.GetAll();
+
+            foreach (Item item in items) 
+            {
+                html += string.Format(site.Template.ItemsCode, item.Name, item.Description, item.Price);
+            }
+            html += site.Template.EndCode;
+
+            return html;
         }
     }
 }
