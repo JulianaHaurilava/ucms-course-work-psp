@@ -6,14 +6,14 @@ using System.Diagnostics;
 
 namespace UCMSApp.Services
 {
-    public class CompanyService
+    public class TemplateService
     {
-        public async Task<Response> UpsertAsync(Company company)
+        public async Task<Response> UpsertAsync(Template template)
         {
             try
             {
-                var data = JsonConvert.SerializeObject(company);
-                await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.UpsertCompany, data));
+                var data = JsonConvert.SerializeObject(template);
+                await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.UpsertTemplate, data));
                 var response = await Client.Client.Instance.GetResponseAsync();
                 return response;
             }
@@ -28,7 +28,7 @@ namespace UCMSApp.Services
         {
             try
             {
-                await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.DeleteCompany, id.ToString()));
+                await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.DeleteTemplate, id.ToString()));
                 var response = await Client.Client.Instance.GetResponseAsync();
                 return response;
             }
@@ -39,14 +39,14 @@ namespace UCMSApp.Services
             }
         }
 
-        public async Task<List<Company>> GetAllAsync()
+        public async Task<List<Template>> GetAllAsync()
         {
             try
             {
-                await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.GetCompanies, ""));
+                await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.GetTemplates, ""));
                 var response = await Client.Client.Instance.GetResponseAsync();
-                var companies = JsonConvert.DeserializeObject<List<Company>>(response.Data);
-                return companies;
+                var templates = JsonConvert.DeserializeObject<List<Template>>(response.Data);
+                return templates;
             }
             catch (Exception ex)
             {

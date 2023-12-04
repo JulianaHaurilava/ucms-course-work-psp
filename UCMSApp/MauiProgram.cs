@@ -57,6 +57,8 @@ namespace UCMSApp
 
             builder.Services.AddSingleton<CompanyService>();
 
+            builder.Services.AddSingleton<TemplateService>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();

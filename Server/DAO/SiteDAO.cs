@@ -37,7 +37,7 @@ namespace Server.DAO
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                return db.Sites.Include(s => s.Company).Include(s => s.Template).ToList();
+                return db.Sites.Include(s => s.Company).ToList();
             }
         }
 
@@ -50,7 +50,7 @@ namespace Server.DAO
             }
         }
 
-        public void GenerateSite(Site site)
+        public void GenerateSite(Site site, Template template)
         {
             string folderPath = Directory.GetCurrentDirectory() + "/" + "sites";
 
@@ -64,7 +64,7 @@ namespace Server.DAO
                 string fileName = site.Name + ".html";
                 string filePath = Path.Combine(folderPath, fileName);
 
-                File.WriteAllText(filePath, GenerateHTML(site));
+                File.WriteAllText(filePath, GenerateHTML(site, template));
             }
             catch (Exception ex)
             {
@@ -72,18 +72,18 @@ namespace Server.DAO
             }
         }
 
-        private string GenerateHTML(Site site)
+        private string GenerateHTML(Site site, Template template)
         {
-            string html = string.Format(site.Template.HeaderCode, site.Name, site.Description);
+            string html = string.Format(template.HeaderCode, site.Name, site.Description);
 
             ItemService itemService = new();
             List<Item> items = itemService.GetAll();
 
             foreach (Item item in items) 
             {
-                html += string.Format(site.Template.ItemsCode, item.Name, item.Description, item.Price);
+                html += string.Format(template.ItemsCode, item.Name, item.Description, item.Price);
             }
-            html += site.Template.EndCode;
+            html += template.EndCode;
 
             return html;
         }

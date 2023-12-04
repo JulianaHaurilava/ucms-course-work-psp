@@ -26,9 +26,9 @@ namespace Server.Services
             dao.Remove(item);
         }
 
-        public void GenerateSite(Site site)
+        public void GenerateSite(Site site, Template template)
         {
-            dao.GenerateSite(site);
+            dao.GenerateSite(site, template);
         }
     }
 }

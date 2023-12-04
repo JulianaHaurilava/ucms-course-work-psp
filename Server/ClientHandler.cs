@@ -89,15 +89,15 @@ namespace Server
 							DeleteItem(request.Message);
 							break;
 
-						//case RequestTypes.GetCompanies:
-						//	GetAllTickets();
-						//	break;
-						//case RequestTypes.UpsertTicket:
-						//	UpsertTicket(request.Message);
-						//	break;
-						//case RequestTypes.DeleteTicket:
-						//	DeleteTicket(request.Message);
-						//	break;
+						case RequestTypes.GetTemplates:
+							GetAllTemplates();
+							break;
+						case RequestTypes.UpsertTemplate:
+                            UpsertTemplate(request.Message);
+							break;
+						case RequestTypes.DeleteTemplate:
+                            DeleteTemplate(request.Message);
+							break;
 
 
 						default:
@@ -256,8 +256,10 @@ namespace Server
 
         private void GenerateSite(string requestMessage)
         {
-            var siteToGenerate = JsonConvert.DeserializeObject<Site>(requestMessage);
-			siteService.GenerateSite(siteToGenerate);
+            TemplatedSite templatedSite = JsonConvert.DeserializeObject<TemplatedSite>(requestMessage);
+            var template = templatedSite.Template;
+            var siteToGenerate = templatedSite.Site;
+			siteService.GenerateSite(siteToGenerate, template);
 
             Response response = new Response(ResponseTypes.Ok, "Сайт успешно сгенерирован!");
             SendResponseAsync(response);
@@ -291,32 +293,32 @@ namespace Server
 			SendResponseAsync(response);
 		}
 
-		//private void GetAllTickets()
-		//{
-		//	var tickets = ticketService.GetAll();
-		//	string data = JsonConvert.SerializeObject(tickets);
-		//	Response response = new Response(ResponseTypes.Ok, "", data);
-		//	SendResponseAsync(response);
-		//}
+		private void GetAllTemplates()
+		{
+			var templates = templateService.GetAll();
+			string data = JsonConvert.SerializeObject(templates);
+			Response response = new Response(ResponseTypes.Ok, "", data);
+			SendResponseAsync(response);
+		}
 
-		//private void UpsertTicket(string requestMessage)
-		//{
-		//	var requestTicket = JsonConvert.DeserializeObject<Ticket>(requestMessage);
+		private void UpsertTemplate(string requestMessage)
+		{
+			var request = JsonConvert.DeserializeObject<Template>(requestMessage);
 
-		//	ticketService.Upsert(requestTicket);
-		//	Response response = new Response(ResponseTypes.Ok, "Успешно");
+            templateService.Upsert(request);
+			Response response = new Response(ResponseTypes.Ok, "Успешно");
 
-		//	SendResponseAsync(response);
-		//}
+			SendResponseAsync(response);
+		}
 
-		//private void DeleteTicket(string requestMessage)
-		//{
-		//	var ticket = ticketService.Get(int.Parse(requestMessage));
+		private void DeleteTemplate(string requestMessage)
+		{
+			var ticket = templateService.Get(int.Parse(requestMessage));
 
-		//	ticketService.Remove(ticket);
-		//	Response response = new Response(ResponseTypes.Ok, "Билет успешно удален");
-		//	SendResponseAsync(response);
-		//}
+            templateService.Remove(ticket);
+			Response response = new Response(ResponseTypes.Ok, "Шаблон успешно удален");
+			SendResponseAsync(response);
+		}
 
 		private void Close()
 		{

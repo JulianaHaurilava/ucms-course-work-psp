@@ -14,19 +14,27 @@ namespace UCMSApp.VVM.Sites
     {
         [ObservableProperty]
         private Site site;
+
+        [ObservableProperty]
+        private Template chosenTemplate;
         public ObservableCollection<Item> ValidItems { get; private set; } = new();
 
         private SiteService siteService;
         private ItemService itemService;
+        private TemplateService templateService;
 
         private List<Item> items;
         public ObservableCollection<Item> Items;
 
-        public SiteGenerationViewModel(SiteService siteService, ItemService itemService)
+        private List<Template> templates;
+        public ObservableCollection<Template> Templates;
+
+        public SiteGenerationViewModel(SiteService siteService, ItemService itemService, TemplateService templateService)
         {
             Title = "Редактирование сайта";
             this.siteService = siteService;
             this.itemService = itemService;
+            this.templateService = templateService;
         }
 
 
@@ -40,7 +48,7 @@ namespace UCMSApp.VVM.Sites
                 if (loadedItems.Count == 0)
                     return;
 
-                loadedItems = loadedItems.Where(t => t.Site.Id == site.Id).ToList();
+                loadedItems = loadedItems.Where(t => t.Site.Id == Site.Id).ToList();
                 items = loadedItems;
 
                 ValidItems.Clear();
@@ -48,6 +56,36 @@ namespace UCMSApp.VVM.Sites
                 {
                     ValidItems.Add(item);
                 }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
+            }
+        }
+
+        [RelayCommand]
+        public async Task LoadTemplatesAsync()
+        {
+            try
+            {
+                List<Template> loaded = await templateService.GetAllAsync();
+
+                if (loaded.Count == 0)
+                    return;
+
+                loaded = loaded.Where(t => t.Company.Id == Site.Company.Id).ToList();
+                templates = loaded;
+
+                if (loaded.Count != 0)
+                {
+                    ChosenTemplate = loaded[0];
+                }
+
+                //ValidTemplates.Clear();
+                //foreach (Item item in items)
+                //{
+                //    ValidItems.Add(item);
+                //}
             }
             catch (Exception ex)
             {
@@ -114,7 +152,7 @@ namespace UCMSApp.VVM.Sites
             try
             {
                 IsBusy = true;
-                var response = await siteService.GenerateSite(Site);
+                var response = await siteService.GenerateSite(Site, ChosenTemplate);
 
                 if (response.Type == ResponseTypes.Ok)
                 {

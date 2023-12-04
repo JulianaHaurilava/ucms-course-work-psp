@@ -46,10 +46,10 @@ namespace CMSLib.Model
                 Company = company
             };
 
-            var site = new Site { Name = "Site_1", Description = "Descr_1", Company = company, Template = template };
+            var site = new Site { Name = "Site_1", Description = "Descr_1", Company = company };
             var item = new Item { Name = "Item_1", Description = "Descr_1", Price = 1.1, Site = site };
 
-            //Templates.Add(template);
+            Templates.Add(template);
             Sites.Add(site);
             Items.Add(item);
         }

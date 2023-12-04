@@ -60,11 +60,12 @@ namespace UCMSApp.Services
             }
         }
 
-        public async Task<Response> GenerateSite(Site site)
+        public async Task<Response> GenerateSite(Site site, Template template)
         {
             try
             {
-                var data = JsonConvert.SerializeObject(site);
+                TemplatedSite templatedSite = new TemplatedSite { Template = template, Site = site };
+                var data = JsonConvert.SerializeObject(templatedSite);
                 await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.GenerateSite, data));
                 var response = await Client.Client.Instance.GetResponseAsync();
                 return response;
