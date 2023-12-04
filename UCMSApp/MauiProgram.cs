@@ -7,6 +7,7 @@ using UCMSApp.VVM.Auth;
 using UCMSApp.VVM.MainMenu;
 using UCMSApp.VVM.Registration;
 using UCMSApp.VVM.Sites;
+using UCMSApp.VVM.Sites.Items;
 
 namespace UCMSApp
 {
@@ -48,6 +49,8 @@ namespace UCMSApp
             builder.Services.AddTransient<SiteGenerationViewModel>();
 
             builder.Services.AddSingleton<ItemService>();
+            builder.Services.AddTransient<EditItem>();
+            builder.Services.AddTransient<EditItemViewModel>();
 
 
 #if DEBUG

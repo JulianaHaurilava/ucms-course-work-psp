@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UCMSApp.VVM.Sites.Items.EditItem"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:UCMSApp.VVM.Sites.Items"
+    Title="{Binding Title}"
+    x:DataType="vm:EditItemViewModel">
+
+    <VerticalStackLayout
+        HorizontalOptions="CenterAndExpand"
+        Spacing="20"
+        VerticalOptions="Center">
+        <Label
+            FontAttributes="Bold"
+            FontSize="Large"
+            Text="Редактировать товар"
+            TextColor="White" />
+        <Entry Placeholder="Наименование" Text="{Binding Item.Name}" />
+        <Entry Placeholder="Описание" Text="{Binding Item.Description}" />
+        <Entry Placeholder="Цена (BYN)" Text="{Binding Item.Price}" />
+
+        <Button
+            Command="{Binding UpsertItemCommand}"
+            FontAttributes="Bold"
+            Text="Подтвердить" />
+    </VerticalStackLayout>
+</ContentPage>

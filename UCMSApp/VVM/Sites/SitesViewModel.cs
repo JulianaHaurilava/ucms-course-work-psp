@@ -62,11 +62,6 @@ namespace UCMSApp.VVM.Sites
             finally { IsBusy = false; }
         }
 
-        /// <summary>
-        /// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        /// </summary>
-        /// <param name="site"></param>
-        /// <returns></returns>
         private async Task GoToChoosenSite(Site site)
         {
             await Shell.Current.GoToAsync(nameof(SiteGeneration), true, new Dictionary<string, object>()

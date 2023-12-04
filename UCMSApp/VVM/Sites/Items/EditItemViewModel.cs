@@ -5,32 +5,32 @@ using CommunityToolkit.Mvvm.Input;
 using UCMSApp.Services;
 using UCMSApp.VVM.Base;
 
-namespace UCMSApp.VVM.Account
+namespace UCMSApp.VVM.Sites.Items
 {
-    [QueryProperty("User", "User")]
-    public partial class EditAccountViewModel : BaseViewModel
+    [QueryProperty("Item", "Item")]
+    public partial class EditItemViewModel : BaseViewModel
     {
         [ObservableProperty]
-        private User user;
+        private Item item;
 
-        private UserService service;
+        private ItemService service;
 
-        public EditAccountViewModel(UserService service)
+        public EditItemViewModel(ItemService service)
         {
             this.service = service;
-            Title = "Редактирование пользователя";
+            Title = "Редактирование товара";
         }
 
 
         [RelayCommand]
-        private async Task UpsertUserAsync()
+        private async Task UpsertItemAsync()
         {
             if (IsBusy) return;
 
             try
             {
                 IsBusy = true;
-                var response = await service.UpsertAsync(User);
+                var response = await service.UpsertAsync(Item);
 
                 if (response.Type == ResponseTypes.Ok)
                 {

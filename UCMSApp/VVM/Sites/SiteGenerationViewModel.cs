@@ -5,17 +5,21 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using UCMSApp.Services;
 using UCMSApp.VVM.Base;
+using UCMSApp.VVM.Sites.Items;
 
 namespace UCMSApp.VVM.Sites
 {
     [QueryProperty("Site", "Site")]
     public partial class SiteGenerationViewModel : BaseViewModel
     {
-        [ObservableProperty] private CMSLib.DTO.Site site;
+        [ObservableProperty]
+        private Site site;
+        public ObservableCollection<Item> ValidItems { get; private set; } = new();
 
         private SiteService siteService;
         private ItemService itemService;
 
+        private List<Item> items;
         public ObservableCollection<Item> Items;
 
         public SiteGenerationViewModel(SiteService siteService, ItemService itemService)
@@ -36,13 +40,39 @@ namespace UCMSApp.VVM.Sites
                 if (loadedItems.Count == 0)
                     return;
 
-                loadedItems = loadedItems.Where(c => c.Site.Id == site.Id).ToList();
-                Items = new ObservableCollection<Item>(loadedItems);
+                loadedItems = loadedItems.Where(t => t.Site.Id == site.Id).ToList();
+                items = loadedItems;
+
+                ValidItems.Clear();
+                foreach (Item item in items)
+                {
+                    ValidItems.Add(item);
+                }
             }
             catch (Exception ex)
             {
                 await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
             }
+        }
+
+        [RelayCommand]
+        private async Task GoToEditItemWindowAsync(Item item)
+        {
+            try
+            {
+                IsBusy = true;
+                await GoToChosenItem(item);
+            }
+            catch (Exception ex) { await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо"); }
+            finally { IsBusy = false; }
+        }
+
+        public async Task GoToChosenItem(Item item)
+        {
+            await Shell.Current.GoToAsync($"{nameof(EditItem)}", true, new Dictionary<string, object>
+            {
+                {"Item", item}
+            });
         }
 
         [RelayCommand]
