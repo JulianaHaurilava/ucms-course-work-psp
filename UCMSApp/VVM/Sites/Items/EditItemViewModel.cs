@@ -34,18 +34,18 @@ namespace UCMSApp.VVM.Sites.Items
 
                 if (response.Type == ResponseTypes.Ok)
                 {
-                    await Shell.Current.DisplayAlert("Внимание!", response.Message, "Хорошо");
+                    await Shell.Current.DisplayAlert("Внимание!", response.Message, "Ок");
                     await Shell.Current.Navigation.PopAsync(true);
                 }
                 else
                 {
-                    await Shell.Current.DisplayAlert("Ошибка!", response.Message, "Хорошо");
+                    await Shell.Current.DisplayAlert("Ошибка!", response.Message, "Ок");
                 }
 
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
+                await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Ок");
             }
             finally
             {

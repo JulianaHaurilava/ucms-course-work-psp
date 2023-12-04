@@ -12,7 +12,7 @@ namespace Server.DAO
                 //var company = Get(item.Id);
                 //if (company != null)
                 //{
-                    db.Companies.Update(item);
+                db.Companies.Update(item);
                 //}
                 //else
                 //{

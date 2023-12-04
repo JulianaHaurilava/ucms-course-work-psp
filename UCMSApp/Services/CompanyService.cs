@@ -6,14 +6,15 @@ using System.Diagnostics;
 
 namespace UCMSApp.Services
 {
-    public class ItemService /*IClientService<Site>*/
+    public class CompanyService
     {
-        public async Task<Response> UpsertAsync(Item item)
+
+        public async Task<Response> UpsertAsync(Company company)
         {
             try
             {
-                var data = JsonConvert.SerializeObject(item);
-                await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.UpsertItem, data));
+                var data = JsonConvert.SerializeObject(company);
+                await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.UpsertCompany, data));
                 var response = await Client.Client.Instance.GetResponseAsync();
                 return response;
             }
@@ -28,7 +29,7 @@ namespace UCMSApp.Services
         {
             try
             {
-                await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.DeleteItem, id.ToString()));
+                await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.DeleteCompany, id.ToString()));
                 var response = await Client.Client.Instance.GetResponseAsync();
                 return response;
             }
@@ -39,14 +40,14 @@ namespace UCMSApp.Services
             }
         }
 
-        public async Task<List<Item>> GetAllAsync()
+        public async Task<List<Company>> GetAllAsync()
         {
             try
             {
-                await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.GetItems, ""));
+                await Client.Client.Instance.SendRequestAsync(new Request(RequestTypes.GetCompanies, ""));
                 var response = await Client.Client.Instance.GetResponseAsync();
-                var items = JsonConvert.DeserializeObject<List<Item>>(response.Data);
-                return items;
+                var companies = JsonConvert.DeserializeObject<List<Company>>(response.Data);
+                return companies;
             }
             catch (Exception ex)
             {

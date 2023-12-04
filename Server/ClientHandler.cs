@@ -75,6 +75,10 @@ namespace Server
                             DeleteSite(request.Message);
 							break;
 
+						case RequestTypes.GenerateSite:
+							GenerateSite(request.Message);
+							break;
+
 						case RequestTypes.GetItems:
                             GetAllItems();
 							break;
@@ -85,7 +89,7 @@ namespace Server
 							DeleteItem(request.Message);
 							break;
 
-						//case RequestTypes.GetTickets:
+						//case RequestTypes.GetCompanies:
 						//	GetAllTickets();
 						//	break;
 						//case RequestTypes.UpsertTicket:
@@ -94,9 +98,7 @@ namespace Server
 						//case RequestTypes.DeleteTicket:
 						//	DeleteTicket(request.Message);
 						//	break;
-						case RequestTypes.GenerateSite:
-							GenerateSite(request.Message);
-							break;
+
 
 						default:
 							Console.WriteLine("Unknown request type");

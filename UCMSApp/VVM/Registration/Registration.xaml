@@ -15,6 +15,7 @@
             FontAttributes="Bold"
             FontSize="30"
             Text="Регистрация" />
+        <Entry Placeholder="Компания" Text="{Binding SelectedCompany}" />
         <Entry Placeholder="Email" Text="{Binding User.Email}" />
         <Entry
             IsPassword="True"

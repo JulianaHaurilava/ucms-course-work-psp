@@ -10,16 +10,7 @@ namespace Server.DAO
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                //var shopitem = Get(item.Id);
-                //if (shopitem != null)
-                //{
-                    db.Items.Update(item);
-                //}
-                //else
-                //{
-                //    db.Items.Add(item);
-                //}
-
+                db.Items.Update(item);
                 db.SaveChanges();
             }
         }
