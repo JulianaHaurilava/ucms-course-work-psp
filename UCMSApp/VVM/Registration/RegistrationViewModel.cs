@@ -5,7 +5,6 @@ using CommunityToolkit.Mvvm.Input;
 using System.Net;
 using UCMSApp.Services;
 using UCMSApp.VVM.Base;
-using UCMSApp.VVM.MainMenu;
 
 namespace UCMSApp.VVM.Registration
 {

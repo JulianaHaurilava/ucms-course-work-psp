@@ -9,15 +9,15 @@ namespace Server.DAO
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                var company = Get(item.Id);
-                if (company != null)
-                {
+                //var company = Get(item.Id);
+                //if (company != null)
+                //{
                     db.Companies.Update(item);
-                }
-                else
-                {
-                    db.Companies.Add(item);
-                }
+                //}
+                //else
+                //{
+                //    db.Companies.Add(item);
+                //}
 
                 db.SaveChanges();
             }

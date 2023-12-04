@@ -10,15 +10,15 @@ namespace Server.DAO
 		{
 			using (ApplicationContext db = new ApplicationContext())
 			{
-				var userInDB = Get(user.Id);
-				if (userInDB != null)
-				{
+				//var userInDB = Get(user.Id);
+				//if (userInDB != null)
+				//{
 					db.Users.Update(user);
-				}
-				else
-				{
-					db.Users.Add(user);
-				}
+				//}
+				//else
+				//{
+				//	db.Users.Add(user);
+				//}
 				db.SaveChanges();
 			}
 		}

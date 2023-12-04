@@ -41,38 +41,45 @@
                 FontAttributes="Bold"
                 Text="Подтвердить" />
         </VerticalStackLayout>
-        <CollectionView Grid.Column="1" ItemsSource="{Binding ValidItems}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="m:Item">
-                    <Grid Padding="10">
-                        <Frame>
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SiteGenerationViewModel}}, Path=GoToEditItemWindowCommand}" CommandParameter="{Binding .}" />
-                            </Frame.GestureRecognizers>
-                            <Grid
-                                ColumnDefinitions="300,*,*"
-                                ColumnSpacing="40"
-                                RowDefinitions="*,*,*,100"
-                                RowSpacing="10">
-                                <!--<Image
+        <VerticalStackLayout Grid.Column="1">
+            <Button
+                Command="{Binding GoToEditItemWindowCommand}"
+                CommandParameter="{x:Null}"
+                FontAttributes="Bold"
+                Text="Добавить" />
+            <CollectionView ItemsSource="{Binding ValidItems}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:Item">
+                        <Grid Padding="10">
+                            <Frame>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SiteGenerationViewModel}}, Path=GoToEditItemWindowCommand}" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                                <Grid
+                                    ColumnDefinitions="300,*,*"
+                                    ColumnSpacing="40"
+                                    RowDefinitions="*,*,*,100"
+                                    RowSpacing="10">
+                                    <!--<Image
                             Grid.RowSpan="4"
                             Aspect="Fill"
                             Source="https://aka.ms/campus.jpg" />-->
 
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    Grid.ColumnSpan="2"
-                                    FontAttributes="Bold"
-                                    FontSize="32"
-                                    Text="{Binding Name, StringFormat='Название: {0}'}"
-                                    VerticalTextAlignment="Center" />
-                            </Grid>
-                        </Frame>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Grid.ColumnSpan="2"
+                                        FontAttributes="Bold"
+                                        FontSize="32"
+                                        Text="{Binding Name, StringFormat='Название: {0}'}"
+                                        VerticalTextAlignment="Center" />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
     </Grid>
 
 

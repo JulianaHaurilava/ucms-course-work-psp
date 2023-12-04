@@ -61,6 +61,7 @@ namespace UCMSApp.VVM.Sites
             try
             {
                 IsBusy = true;
+                item ??= new Item { Site = site };
                 await GoToChosenItem(item);
             }
             catch (Exception ex) { await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо"); }
