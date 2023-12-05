@@ -38,9 +38,6 @@ namespace UCMSApp.VVM.Registration
             {
                 IsBusy = true;
 
-                //if (!await CheckUserPropertiesAsync())
-                //    return;
-
                 Company company = await GetCompanyAsync();
                 User.Company = company;
                 if (company.Id == 0)

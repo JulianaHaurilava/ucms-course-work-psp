@@ -22,6 +22,14 @@ namespace Server.DAO
             }
         }
 
+        public Company GetByName(string name)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                return db.Companies.FirstOrDefault(c => c.Name == name);
+            }
+        }
+
         public override List<Company> GetAll()
         {
             using (ApplicationContext db = new ApplicationContext())

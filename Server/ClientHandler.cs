@@ -211,6 +211,11 @@ namespace Server
 
 					if (error == "")
 					{
+						if (requestUser.Company.Id == 0)
+						{
+                            companyService.Upsert(new Company { Name = requestUser.Company.Name });
+                            requestUser.Company = companyService.GetByName(requestUser.Company.Name);
+                        }
 						userService.Upsert(requestUser);
 						response = new Response(ResponseTypes.Ok, "Успешно");
 					}

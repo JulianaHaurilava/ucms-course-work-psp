@@ -16,7 +16,12 @@ namespace Server.Services
 			return dao.Get(id);
 		}
 
-		public override List<Company> GetAll()
+        public Company GetByName(string name)
+        {
+            return dao.GetByName(name);
+        }
+
+        public override List<Company> GetAll()
 		{
 			return dao.GetAll();
 		}
