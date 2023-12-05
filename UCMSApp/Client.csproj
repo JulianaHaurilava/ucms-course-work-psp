@@ -75,6 +75,9 @@
 	  <MauiXaml Update="VVM\Account\EditAccount.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="VVM\Account\EditEmployeeAccount.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="VVM\Auth\Authorization.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -24,6 +24,7 @@ namespace UCMSApp
             Routing.RegisterRoute(nameof(EditItem), typeof(EditItem));
 
             Routing.RegisterRoute(nameof(CompanyAccounts), typeof(CompanyAccounts));
+            Routing.RegisterRoute(nameof(EditEmployeeAccount), typeof(EditEmployeeAccount));
         }
     }
 }

@@ -39,7 +39,7 @@ namespace UCMSApp.VVM.Account
                 if (loadedUsers.Count == 0)
                     return;
 
-                loadedUsers = loadedUsers.Where(t => t.Company.Id == Client.Client.Instance.CurrentUser.Company.Id).ToList();
+                loadedUsers = loadedUsers.Where(t => t.Company.Id == Client.Client.Instance.CurrentUser.Company.Id ).ToList();
                 users = loadedUsers;
                 ValidateElements();
             }
@@ -50,23 +50,28 @@ namespace UCMSApp.VVM.Account
         }
 
         [RelayCommand]
-        private async Task GenerateSiteAsync(Site site)
+        private async Task EditEmployeeAccountAsync(User user)
         {
+            if (user.Id == Client.Client.Instance.CurrentUser.Id)
+            {
+                await Shell.Current.DisplayAlert("Ошибка!", "Редактирование собственного аккаунта невозможно в данном режиме", "Oк");
+                return;
+            }
             try
             {
                 IsBusy = true;
-                await GoToChoosenSite(site);
+                await GoToChosenUser(user);
             }
             catch (Exception ex) { await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо"); }
             finally { IsBusy = false; }
         }
 
-        private async Task GoToChoosenSite(Site site)
+        private async Task GoToChosenUser(User user)
         {
-            //await Shell.Current.GoToAsync(nameof(UserSettings), true, new Dictionary<string, object>()
-            //{
-            //    {"User", user}
-            //});
+            await Shell.Current.GoToAsync(nameof(EditEmployeeAccount), true, new Dictionary<string, object>()
+            {
+                {"User", user}
+            });
         }
 
         [RelayCommand]

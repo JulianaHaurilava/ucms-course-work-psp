@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UCMSApp.VVM.Account.EditEmployeeAccount"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:UCMSApp.VVM.Account"
+    Title="{Binding Title}"
+    x:DataType="vm:EditEmployeeAccountViewModel">
+
+    <VerticalStackLayout
+        HorizontalOptions="CenterAndExpand"
+        Spacing="20"
+        VerticalOptions="Center">
+        <Label
+            FontAttributes="Bold"
+            FontSize="Large"
+            Text="Редактировать аккаунт сотрудника"
+            TextColor="White" />
+
+        <Label Text="{Binding User.Email, StringFormat='Email: {0}'}" />
+        <Label Text="{Binding User.IsAdmin, StringFormat='Статус: {0}'}" />
+
+        <Button
+            Command="{Binding ChangeUserRoleCommand}"
+            FontAttributes="Bold"
+            Text="Изменить роль" />
+        <Button
+            BackgroundColor="Red"
+            Command="{Binding DeleteChosenEmployeeCommand}"
+            FontAttributes="Bold"
+            Text="Удалить" />
+    </VerticalStackLayout>
+</ContentPage>
