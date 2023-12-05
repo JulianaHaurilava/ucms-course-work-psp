@@ -2,6 +2,7 @@
 using CMSLib.Enum;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Graphics.Text;
 using UCMSApp.Services;
 using UCMSApp.VVM.Base;
 
@@ -12,6 +13,9 @@ namespace UCMSApp.VVM.Sites.Items
     {
         [ObservableProperty]
         private Item item;
+
+        [ObservableProperty]
+        private string price;
 
         private ItemService service;
 
@@ -29,6 +33,13 @@ namespace UCMSApp.VVM.Sites.Items
 
             try
             {
+                double validPrice = double.Parse(Price);
+                if (validPrice < 0)
+                {
+                    await Shell.Current.DisplayAlert("Ошибка!", "Цена должна быть положительным числом", "Ок");
+                    return;
+                }
+
                 IsBusy = true;
                 var response = await service.UpsertAsync(Item);
 
@@ -42,6 +53,10 @@ namespace UCMSApp.VVM.Sites.Items
                     await Shell.Current.DisplayAlert("Ошибка!", response.Message, "Ок");
                 }
 
+            }
+            catch (FormatException)
+            {
+                await Shell.Current.DisplayAlert("Ошибка!", "Некорректная цена", "Ок");
             }
             catch (Exception ex)
             {

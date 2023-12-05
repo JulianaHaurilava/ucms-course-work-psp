@@ -18,7 +18,7 @@
             TextColor="White" />
         <Entry Placeholder="Наименование" Text="{Binding Item.Name}" />
         <Entry Placeholder="Описание" Text="{Binding Item.Description}" />
-        <Entry Placeholder="Цена (BYN)" Text="{Binding Item.Price}" />
+        <Entry Placeholder="Цена (BYN)" Text="{Binding Price}" />
 
         <Button
             Command="{Binding UpsertItemCommand}"
