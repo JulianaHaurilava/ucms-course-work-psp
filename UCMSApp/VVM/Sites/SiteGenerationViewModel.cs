@@ -99,21 +99,36 @@ namespace UCMSApp.VVM.Sites
         }
 
         [RelayCommand]
-        private async Task GoToEditItemWindowAsync(Item item)
+        private async Task WorkWithItemAsync(Item item)
         {
             try
             {
                 IsBusy = true;
-                item ??= new Item { Site = site };
-                await GoToChosenItem(item);
+                item ??= new Item { Site = Site };
+                if (item.Id == 0)
+                {
+                    await GoToAddItemWindow(item);
+                }
+                else
+                {
+                    await GoToEditItemWindow(item);
+                }
             }
             catch (Exception ex) { await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо"); }
             finally { IsBusy = false; }
         }
 
-        public async Task GoToChosenItem(Item item)
+        private async Task GoToEditItemWindow(Item item)
         {
             await Shell.Current.GoToAsync($"{nameof(EditItem)}", true, new Dictionary<string, object>
+            {
+                {"Item", item}
+            });
+        }
+
+        private async Task GoToAddItemWindow(Item item)
+        {
+            await Shell.Current.GoToAsync($"{nameof(AddItem)}", true, new Dictionary<string, object>
             {
                 {"Item", item}
             });

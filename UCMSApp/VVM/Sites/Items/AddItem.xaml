@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="UCMSApp.VVM.Sites.Items.EditItem"
+    x:Class="UCMSApp.VVM.Sites.Items.AddItem"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:UCMSApp.VVM.Sites.Items"
@@ -24,10 +24,5 @@
             Command="{Binding UpsertItemCommand}"
             FontAttributes="Bold"
             Text="Подтвердить" />
-        <Button
-            BackgroundColor="Red"
-            Command="{Binding DeleteItemCommand}"
-            FontAttributes="Bold"
-            Text="Удалить" />
     </VerticalStackLayout>
 </ContentPage>

@@ -23,6 +23,7 @@ namespace UCMSApp
             Routing.RegisterRoute(nameof(SiteGeneration), typeof(SiteGeneration));
             Routing.RegisterRoute(nameof(AddSite), typeof(AddSite));
             Routing.RegisterRoute(nameof(EditItem), typeof(EditItem));
+            Routing.RegisterRoute(nameof(AddItem), typeof(AddItem));
 
             Routing.RegisterRoute(nameof(CompanyAccounts), typeof(CompanyAccounts));
             Routing.RegisterRoute(nameof(EditEmployeeAccount), typeof(EditEmployeeAccount));

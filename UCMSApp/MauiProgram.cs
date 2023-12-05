@@ -57,6 +57,7 @@ namespace UCMSApp
 
             builder.Services.AddSingleton<ItemService>();
             builder.Services.AddTransient<EditItem>();
+            builder.Services.AddTransient<AddItem>();
             builder.Services.AddTransient<EditItemViewModel>();
 
             builder.Services.AddSingleton<CompanyService>();

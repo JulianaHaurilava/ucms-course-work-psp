@@ -52,5 +52,36 @@ namespace UCMSApp.VVM.Sites.Items
                 IsBusy = false;
             }
         }
+
+        [RelayCommand]
+        public async Task DeleteItemAsync()
+        {
+            if (IsBusy) return;
+
+            try
+            {
+                IsBusy = true;
+                var response = await service.DeleteAsync(Item.Id);
+
+                if (response.Type == ResponseTypes.Ok)
+                {
+                    await Shell.Current.DisplayAlert("Внимание!", response.Message, "Oк");
+                    await Shell.Current.Navigation.PopAsync(true);
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Ошибка!", response.Message, "Oк");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Oк");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
     }
 }
