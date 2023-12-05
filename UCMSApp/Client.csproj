@@ -90,6 +90,9 @@
 	  <MauiXaml Update="VVM\Registration\Registration.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="VVM\Sites\AddSite.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="VVM\Sites\Items\EditItem.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

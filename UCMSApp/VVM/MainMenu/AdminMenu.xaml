@@ -8,19 +8,24 @@
     x:DataType="vm:AdminMenuViewModel">
     <VerticalStackLayout Spacing="10" VerticalOptions="CenterAndExpand">
         <Button
+            Command="{Binding GoToAccountViewCommand}"
+            FontAttributes="Bold"
+            Text="Аккаунт"
+            WidthRequest="200" />
+        <Button
             Command="{Binding GoToCompanyViewCommand}"
             FontAttributes="Bold"
             Text="Компания"
             WidthRequest="200" />
         <Button
+            Command="{Binding GoToSitesViewCommand}"
+            FontAttributes="Bold"
+            Text="Сайты"
+            WidthRequest="200" />
+        <Button
             Command="{Binding GoToSamplesViewCommand}"
             FontAttributes="Bold"
             Text="Шаблоны"
-            WidthRequest="200" />
-        <Button
-            Command="{Binding GoToUserMenuViewCommand}"
-            FontAttributes="Bold"
-            Text="Меню сотрудника"
             WidthRequest="200" />
     </VerticalStackLayout>
 </ContentPage>

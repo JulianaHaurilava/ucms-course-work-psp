@@ -50,19 +50,46 @@ namespace UCMSApp.VVM.Sites
             }
         }
 
+        private bool CanAdd()
+        {
+            return Client.Client.Instance.CurrentUser.IsAdmin;
+        }
+
+        [RelayCommand(CanExecute = nameof(CanAdd))]
+        private async Task AddSiteAsync(Site site)
+        {
+            try
+            {
+                IsBusy = true;
+                site ??= new Site { Company = Client.Client.Instance.CurrentUser.Company };
+                await GoToAddSiteWindow(site);
+            }
+            catch (Exception ex) { await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо"); }
+            finally { IsBusy = false; }
+        }
+
+        private async Task GoToAddSiteWindow(Site site)
+        {
+            await Shell.Current.GoToAsync(nameof(AddSite), true, new Dictionary<string, object>()
+            {
+                {"Site", site}
+            });
+        }
+
+
         [RelayCommand]
         private async Task GenerateSiteAsync(Site site)
         {
             try
             {
                 IsBusy = true;
-                await GoToChoosenSite(site);
+                await GoToSiteGeneration(site);
             }
             catch (Exception ex) { await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо"); }
             finally { IsBusy = false; }
         }
 
-        private async Task GoToChoosenSite(Site site)
+        private async Task GoToSiteGeneration(Site site)
         {
             await Shell.Current.GoToAsync(nameof(SiteGeneration), true, new Dictionary<string, object>()
             {

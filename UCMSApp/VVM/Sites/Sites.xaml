@@ -75,6 +75,13 @@
                     <toolkit:EventToCommandBehavior Command="{Binding ValidateElementsCommand}" EventName="SelectedIndexChanged" />
                 </Picker.Behaviors>
             </Picker>
+            <Button
+                Grid.Column="3"
+                Command="{Binding AddSiteCommand}"
+                CommandParameter="{x:Null}"
+                FontAttributes="Bold"
+                Text="Добавить"
+                WidthRequest="200" />
         </Grid>
     </Grid>
 </ContentPage>
