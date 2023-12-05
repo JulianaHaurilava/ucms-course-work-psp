@@ -24,5 +24,10 @@
             Command="{Binding UpsertUserCommand}"
             FontAttributes="Bold"
             Text="Подтвердить" />
+        <Button
+            BackgroundColor="Red"
+            Command="{Binding DeleteUserCommand}"
+            FontAttributes="Bold"
+            Text="Удалить аккаунт" />
     </VerticalStackLayout>
 </ContentPage>

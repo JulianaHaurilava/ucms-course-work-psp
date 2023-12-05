@@ -2,6 +2,7 @@
 using CMSLib.Enum;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Net;
 using UCMSApp.Services;
 using UCMSApp.VVM.Base;
 
@@ -46,6 +47,37 @@ namespace UCMSApp.VVM.Account
             catch (Exception ex)
             {
                 await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        [RelayCommand]
+        public async Task DeleteUserAsync()
+        {
+            if (IsBusy) return;
+
+            try
+            {
+                IsBusy = true;
+                var response = await service.DeleteAsync(User.Id);
+
+                if (response.Type == ResponseTypes.Ok)
+                {
+                    await Shell.Current.DisplayAlert("Внимание!", response.Message, "Oк");
+                    await Shell.Current.GoToAsync("../../..");
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Ошибка!", response.Message, "Oк");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Oк");
             }
             finally
             {
