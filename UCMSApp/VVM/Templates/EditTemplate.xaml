@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="UCMSApp.VVM.Templates.EditTemplate"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:UCMSApp.VVM.Templates"
+    Title="{Binding Title}"
+    x:DataType="vm:EditTemplateViewModel">
+
+    <VerticalStackLayout
+        HorizontalOptions="CenterAndExpand"
+        Spacing="20"
+        VerticalOptions="Center">
+        <Label
+            FontAttributes="Bold"
+            FontSize="Large"
+            Text="Изменение шаблона"
+            TextColor="White" />
+        <Entry Placeholder="Название" Text="{Binding Template.Name}" />
+        <Editor Placeholder="Стиль" Text="{Binding Template.Style}" />
+
+        <Button
+            Command="{Binding UpsertTemplateCommand}"
+            FontAttributes="Bold"
+            Text="Сохранить" />
+        <Button
+            BackgroundColor="Red"
+            Command="{Binding DeleteTemplateCommand}"
+            FontAttributes="Bold"
+            Text="Удалить" />
+    </VerticalStackLayout>
+</ContentPage>

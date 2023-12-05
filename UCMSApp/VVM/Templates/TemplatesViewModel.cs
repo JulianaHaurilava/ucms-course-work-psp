@@ -60,6 +60,11 @@ namespace UCMSApp.VVM.Templates
             {
                 IsBusy = true;
                 template ??= new Template { Company = Client.Client.Instance.CurrentUser.Company };
+                if (template.Id == 0)
+                {
+                    await GoToAddTemplateWindow(template);
+                    return;
+                }
                 await GoToEditTemplateWindow(template);
             }
             catch (Exception ex) { await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Ок"); }
@@ -68,10 +73,18 @@ namespace UCMSApp.VVM.Templates
 
         private async Task GoToEditTemplateWindow(Template template)
         {
-            //await Shell.Current.GoToAsync(nameof(EditTemplate), true, new Dictionary<string, object>()
-            //{
-            //    {"Template", template}
-            //});
+            await Shell.Current.GoToAsync(nameof(EditTemplate), true, new Dictionary<string, object>()
+            {
+                {"Template", template}
+            });
+        }
+
+        private async Task GoToAddTemplateWindow(Template template)
+        {
+            await Shell.Current.GoToAsync(nameof(AddTemplate), true, new Dictionary<string, object>()
+            {
+                {"Template", template}
+            });
         }
 
 

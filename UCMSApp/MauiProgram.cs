@@ -66,6 +66,9 @@ namespace UCMSApp
             builder.Services.AddSingleton<TemplateService>();
             builder.Services.AddTransient<Templates>();
             builder.Services.AddTransient<TemplatesViewModel>();
+            builder.Services.AddTransient<EditTemplate>();
+            builder.Services.AddTransient<AddTemplate>();
+            builder.Services.AddTransient<EditTemplateViewModel>();
 
 
 #if DEBUG

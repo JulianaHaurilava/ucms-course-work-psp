@@ -30,6 +30,8 @@ namespace UCMSApp
             Routing.RegisterRoute(nameof(EditEmployeeAccount), typeof(EditEmployeeAccount));
 
             Routing.RegisterRoute(nameof(Templates), typeof(Templates));
+            Routing.RegisterRoute(nameof(EditTemplate), typeof(EditTemplate));
+            Routing.RegisterRoute(nameof(AddTemplate), typeof(AddTemplate));
         }
     }
 }
