@@ -1,9 +1,9 @@
-﻿using System.Net;
-using UCMSApp.VVM.Account;
+﻿using UCMSApp.VVM.Account;
 using UCMSApp.VVM.MainMenu;
 using UCMSApp.VVM.Registration;
 using UCMSApp.VVM.Sites;
 using UCMSApp.VVM.Sites.Items;
+using UCMSApp.VVM.Templates;
 
 namespace UCMSApp
 {
@@ -28,6 +28,8 @@ namespace UCMSApp
 
             Routing.RegisterRoute(nameof(CompanyAccounts), typeof(CompanyAccounts));
             Routing.RegisterRoute(nameof(EditEmployeeAccount), typeof(EditEmployeeAccount));
+
+            Routing.RegisterRoute(nameof(Templates), typeof(Templates));
         }
     }
 }

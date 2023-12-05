@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="UCMSApp.VVM.Sites.Sites"
+    x:Class="UCMSApp.VVM.Templates.Templates"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:m="clr-namespace:CMSLib.DTO;assembly=CMSLib"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    xmlns:vm="clr-namespace:UCMSApp.VVM.Sites"
+    xmlns:vm="clr-namespace:UCMSApp.VVM.Templates"
     Title="{Binding Title}"
-    x:DataType="vm:SitesViewModel">
+    x:DataType="vm:TemplatesViewModel">
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior Command="{Binding LoadElementsCommand}" EventName="NavigatedTo" />
     </ContentPage.Behaviors>
@@ -20,13 +20,13 @@
         <CollectionView
             Grid.Row="1"
             Grid.ColumnSpan="2"
-            ItemsSource="{Binding ValidSites}">
+            ItemsSource="{Binding ValidTemplates}">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="m:Site">
+                <DataTemplate x:DataType="m:Template">
                     <Grid Padding="10">
                         <Frame>
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SitesViewModel}}, Path=GenerateSiteCommand}" CommandParameter="{Binding .}" />
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TemplatesViewModel}}, Path=EditTemplateCommand}" CommandParameter="{Binding .}" />
                             </Frame.GestureRecognizers>
                             <Grid
                                 ColumnDefinitions="300,*,*"
@@ -39,7 +39,7 @@
                                     Grid.ColumnSpan="2"
                                     FontAttributes="Bold"
                                     FontSize="32"
-                                    Text="{Binding Name, StringFormat='Название: {0}'}"
+                                    Text="{Binding Name}"
                                     VerticalTextAlignment="Center" />
                             </Grid>
                         </Frame>
@@ -72,7 +72,7 @@
             </Picker>
             <Button
                 Grid.Column="3"
-                Command="{Binding AddSiteCommand}"
+                Command="{Binding EditTemplateCommand}"
                 CommandParameter="{x:Null}"
                 FontAttributes="Bold"
                 Text="Добавить"

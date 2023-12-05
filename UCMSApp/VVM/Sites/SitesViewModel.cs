@@ -137,6 +137,5 @@ namespace UCMSApp.VVM.Sites
             }
             return orderedSites;
         }
-
     }
 }

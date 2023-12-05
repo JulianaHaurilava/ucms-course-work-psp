@@ -23,7 +23,7 @@
             Text="Сайты"
             WidthRequest="200" />
         <Button
-            Command="{Binding GoToSamplesViewCommand}"
+            Command="{Binding GoToTemplatesViewCommand}"
             FontAttributes="Bold"
             Text="Шаблоны"
             WidthRequest="200" />

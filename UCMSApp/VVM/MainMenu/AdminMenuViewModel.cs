@@ -73,23 +73,23 @@ namespace UCMSApp.VVM.MainMenu
         }
 
         [RelayCommand]
-        private async Task GoToSamplesViewAsync()
+        private async Task GoToTemplatesViewAsync()
         {
-            //if (IsBusy) return;
-            //try
-            //{
-            //    IsBusy = true;
-            //    await Shell.Current.GoToAsync($"{nameof(Cinemas)}", true);
+            if (IsBusy) return;
+            try
+            {
+                IsBusy = true;
+                await Shell.Current.GoToAsync($"{nameof(Templates)}", true);
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
-            //}
-            //finally
-            //{
-            //    IsBusy = false;
-            //}
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Ок");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

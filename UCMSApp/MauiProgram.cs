@@ -8,6 +8,7 @@ using UCMSApp.VVM.MainMenu;
 using UCMSApp.VVM.Registration;
 using UCMSApp.VVM.Sites;
 using UCMSApp.VVM.Sites.Items;
+using UCMSApp.VVM.Templates;
 
 namespace UCMSApp
 {
@@ -63,6 +64,8 @@ namespace UCMSApp
             builder.Services.AddSingleton<CompanyService>();
 
             builder.Services.AddSingleton<TemplateService>();
+            builder.Services.AddTransient<Templates>();
+            builder.Services.AddTransient<TemplatesViewModel>();
 
 
 #if DEBUG
