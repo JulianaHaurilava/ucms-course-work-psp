@@ -27,7 +27,7 @@
             <Label
                 FontAttributes="Bold"
                 FontSize="Large"
-                Text="Редактировать пользователя"
+                Text="Генерация сайта"
                 TextColor="White" />
             <Entry Placeholder="Название" Text="{Binding Site.Name}" />
             <Entry Placeholder="Описание" Text="{Binding Site.Description}" />
@@ -40,6 +40,11 @@
                 Command="{Binding UpsertSiteCommand}"
                 FontAttributes="Bold"
                 Text="Подтвердить" />
+            <Button
+                BackgroundColor="Red"
+                Command="{Binding DeleteSiteCommand}"
+                FontAttributes="Bold"
+                Text="Удалить" />
         </VerticalStackLayout>
         <VerticalStackLayout Grid.Column="1">
             <Button

@@ -54,8 +54,7 @@ namespace UCMSApp.VVM.Sites
                 if (loadedItems.Count == 0)
                     return;
 
-                loadedItems = loadedItems.Where(t => t.Site.Id == Site.Id).ToList();
-                items = loadedItems;
+                items = loadedItems.Where(t => t.Site.Id == Site.Id).ToList();
 
                 ValidItems.Clear();
                 foreach (Item item in items)
@@ -173,6 +172,70 @@ namespace UCMSApp.VVM.Sites
             catch (Exception ex)
             {
                 await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Хорошо");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private bool CanDelete()
+        {
+            return Client.Client.Instance.CurrentUser.IsAdmin;
+        }
+
+        [RelayCommand(CanExecute = nameof(CanDelete))]
+        private async Task DeleteSiteAsync()
+        {
+            if (IsBusy) return;
+
+            try
+            {
+                IsBusy = true;
+                await DeleteItemsAsync();
+                var response = await siteService.DeleteAsync(Site.Id);
+
+                if (response.Type == ResponseTypes.Ok)
+                {
+                    await Shell.Current.DisplayAlert("Внимание!", response.Message, "Oк");
+                    await Shell.Current.Navigation.PopAsync(true);
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Ошибка!", response.Message, "Oк");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Oк");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async Task DeleteItemsAsync()
+        {
+            if (IsBusy) return;
+
+            try
+            {
+                foreach (var item in items)
+                {
+                    IsBusy = true;
+                    var response = await itemService.DeleteAsync(item.Id);
+
+                    if (response.Type != ResponseTypes.Ok)
+                    {
+                        await Shell.Current.DisplayAlert("Ошибка!", response.Message, "Oк");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Ошибка!", ex.Message, "Oк");
             }
             finally
             {
