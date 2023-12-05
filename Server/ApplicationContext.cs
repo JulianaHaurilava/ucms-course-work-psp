@@ -26,23 +26,6 @@ namespace CMSLib.Model
             var template = new Template
             {
                 Name = "Default Template",
-                HeaderCode =
-                @"<!DOCTYPE html>
-                    <html>
-                    <head>
-                        <title>{0}</title>
-                    </head>
-                    <body>
-                        <h1>{0}</h1>
-                        <p>{1}</p>
-                        <h2>Товары</h2>",
-                ItemsCode = @"
-                    <div>
-                        <h3>{0}</h3>
-                        <p>{1}</p>
-                        <p>Цена: {2}</p>
-                    </div>",
-                EndCode = "</body></html>",
                 Company = company
             };
 

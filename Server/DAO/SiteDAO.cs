@@ -74,14 +74,23 @@ namespace Server.DAO
 
         private string GenerateHTML(Site site, Template template)
         {
-            string html = string.Format(template.HeaderCode, site.Name, site.Description);
+            string html = string.Format(template.HeaderCode[0], site.Name);
+
+            if (!string.IsNullOrEmpty(template.Style) )
+            {
+                html += template.Style;
+            }
+            html += string.Format(template.HeaderCode[1], site.Name, site.Description); ;
 
             ItemService itemService = new();
             List<Item> items = itemService.GetAll();
 
             foreach (Item item in items) 
             {
-                html += string.Format(template.ItemsCode, item.Name, item.Description, item.Price);
+                if (item.Site.Id == site.Id)
+                {
+                    html += string.Format(template.ItemsCode, item.Name, item.Description, item.Price);
+                }
             }
             html += template.EndCode;
 
