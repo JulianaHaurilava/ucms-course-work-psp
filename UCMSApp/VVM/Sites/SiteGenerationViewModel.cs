@@ -27,7 +27,7 @@ namespace UCMSApp.VVM.Sites
         public ObservableCollection<Item> Items;
 
         private List<Template> templates;
-        public ObservableCollection<Template> Templates;
+        public ObservableCollection<Template> ValidTemplates { get; private set; } = new();
 
         public SiteGenerationViewModel(SiteService siteService, ItemService itemService, TemplateService templateService)
         {
@@ -86,11 +86,11 @@ namespace UCMSApp.VVM.Sites
                     ChosenTemplate = loaded[0];
                 }
 
-                //ValidTemplates.Clear();
-                //foreach (Item item in items)
-                //{
-                //    ValidItems.Add(item);
-                //}
+                ValidTemplates.Clear();
+                foreach (Template template in templates)
+                {
+                    ValidTemplates.Add(template);
+                }
             }
             catch (Exception ex)
             {
@@ -172,6 +172,8 @@ namespace UCMSApp.VVM.Sites
             try
             {
                 IsBusy = true;
+
+                ChosenTemplate ??= new Template { Company = Site.Company };
                 var response = await siteService.GenerateSite(Site, ChosenTemplate);
 
                 if (response.Type == ResponseTypes.Ok)

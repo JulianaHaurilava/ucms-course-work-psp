@@ -25,7 +25,19 @@ namespace CMSLib.Model
 
             var template = new Template
             {
-                Name = "Default Template",
+                Name = "Custom",
+                Style = @"<style>
+                             body {
+                                font-family: 'Arial',
+                                sans-serif;\r\n
+                                background-color: #f0f0f0;
+                                margin: 20px;
+                                }
+                             h1 {color: #333;}h2 {color: #555;}
+                             div {border: 1px solid #ccc;padding: 10px;margin-bottom: 10px;background-color: #fff;}
+                             h3 {color: #007bff;}p {color: #333;}
+                             p.price {color: #28a745;}
+                         </style>",
                 Company = company
             };
 

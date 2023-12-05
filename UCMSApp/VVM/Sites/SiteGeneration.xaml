@@ -31,7 +31,11 @@
                 TextColor="White" />
             <Entry Placeholder="Название" Text="{Binding Site.Name}" />
             <Entry Placeholder="Описание" Text="{Binding Site.Description}" />
-
+            <Picker
+                Title="Выберите шаблон"
+                ItemDisplayBinding="{Binding Name}"
+                ItemsSource="{Binding ValidTemplates}"
+                SelectedItem="{Binding ChosenTemplate, Mode=TwoWay}" />
             <Button
                 Command="{Binding GenerateSiteCommand}"
                 FontAttributes="Bold"
@@ -65,10 +69,6 @@
                                     ColumnSpacing="40"
                                     RowDefinitions="*,*,*,100"
                                     RowSpacing="10">
-                                    <!--<Image
-                            Grid.RowSpan="4"
-                            Aspect="Fill"
-                            Source="https://aka.ms/campus.jpg" />-->
 
                                     <Label
                                         Grid.Row="0"

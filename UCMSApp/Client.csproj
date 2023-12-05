@@ -107,8 +107,4 @@
 	  </MauiXaml>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="VVM\Companies\" />
-	</ItemGroup>
-
 </Project>
