@@ -28,20 +28,11 @@
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SitesViewModel}}, Path=GenerateSiteCommand}" CommandParameter="{Binding .}" />
                             </Frame.GestureRecognizers>
-                            <Grid
-                                ColumnDefinitions="300,*,*"
-                                ColumnSpacing="40"
-                                RowDefinitions="*,*,*,100"
-                                RowSpacing="10">
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    Grid.ColumnSpan="2"
-                                    FontAttributes="Bold"
-                                    FontSize="32"
-                                    Text="{Binding Name, StringFormat='Название: {0}'}"
-                                    VerticalTextAlignment="Center" />
-                            </Grid>
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Text="{Binding Name, StringFormat='Название: {0}'}"
+                                VerticalTextAlignment="Center" />
                         </Frame>
                     </Grid>
                 </DataTemplate>
