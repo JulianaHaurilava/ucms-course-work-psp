@@ -11,16 +11,7 @@ namespace Server.DAO
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                //var site = Get(item.Id);
-                //if (site != null)
-                //{
-                    db.Sites.Update(item);
-                //}
-                //else
-                //{
-                //    db.Sites.Add(item);
-                //}
-
+                db.Sites.Update(item);
                 db.SaveChanges();
             }
         }

@@ -199,23 +199,32 @@ namespace Server
 			var users = userService.GetAll();
 			var user = users.Find(u => u.Email.Equals(requestUser.Email, StringComparison.OrdinalIgnoreCase));
 			Response response;
-			if (user != null)
+			if (user != null && user.Id != requestUser.Id)
 			{
-				if (user.Id != requestUser.Id)
-				{
-					response = new Response(ResponseTypes.NotOk, "Такой пользователь уже существует");
-				}
-				else
-				{
-					userService.Upsert(requestUser);
-					response = new Response(ResponseTypes.Ok, "Успешно");
-				}
+				response = new Response(ResponseTypes.NotOk, "Такой пользователь уже существует");
 			}
 			else
 			{
-				userService.Upsert(requestUser);
-				response = new Response(ResponseTypes.Ok, "Успешно");
+				if (Validator.EmailIsValid(requestUser.Email))
+				{
+					string error = Validator.PasswordIsValid(requestUser.Password);
+
+					if (error == "")
+					{
+						userService.Upsert(requestUser);
+						response = new Response(ResponseTypes.Ok, "Успешно");
+					}
+					else
+					{
+						response = new Response(ResponseTypes.NotOk, error);
+					}
+				}
+				else
+				{
+                    response = new Response(ResponseTypes.NotOk, "Некорректный email");
+                }
 			}
+			
 			SendResponseAsync(response);
 		}
 
@@ -264,7 +273,6 @@ namespace Server
             Response response = new Response(ResponseTypes.Ok, "Сайт успешно сгенерирован!");
             SendResponseAsync(response);
         }
-		
 
 		private void GetAllItems()
 		{
@@ -303,10 +311,25 @@ namespace Server
 
 		private void UpsertTemplate(string requestMessage)
 		{
-			var request = JsonConvert.DeserializeObject<Template>(requestMessage);
-
-            templateService.Upsert(request);
-			Response response = new Response(ResponseTypes.Ok, "Успешно");
+			Response response;
+            var request = JsonConvert.DeserializeObject<Template>(requestMessage);
+			
+			if (request != null)
+			{
+				if (Validator.StyleIsValid(request.Style))
+				{
+                    templateService.Upsert(request);
+                    response = new Response(ResponseTypes.Ok, "Успешно");
+                }
+				else
+				{
+                    response = new Response(ResponseTypes.NotOk, "Введен некорректный стиль");
+                }
+			}
+            else
+            {
+                response = new Response(ResponseTypes.NotOk, "Введен некорректный стиль");
+            }
 
 			SendResponseAsync(response);
 		}
