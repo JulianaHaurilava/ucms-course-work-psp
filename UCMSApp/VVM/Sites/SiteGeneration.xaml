@@ -10,8 +10,7 @@
     x:DataType="vm:SiteGenerationViewModel">
 
     <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior Command="{Binding LoadItemsCommand}" EventName="NavigatedTo" />
-        <toolkit:EventToCommandBehavior Command="{Binding LoadTemplatesCommand}" EventName="NavigatedTo" />
+        <toolkit:EventToCommandBehavior Command="{Binding LoadAllDataCommand}" EventName="NavigatedTo" />
     </ContentPage.Behaviors>
 
     <Grid>

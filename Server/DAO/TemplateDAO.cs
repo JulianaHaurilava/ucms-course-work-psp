@@ -10,16 +10,7 @@ namespace Server.DAO
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                //var template = Get(item.Id);
-                //if (template != null)
-                //{
-                    db.Templates.Update(item);
-                //}
-                //else
-                //{
-                //    db.Templates.Add(item);
-                //}
-
+                db.Templates.Update(item);
                 db.SaveChanges();
             }
         }

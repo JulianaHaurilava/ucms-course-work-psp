@@ -37,6 +37,12 @@ namespace UCMSApp.VVM.Sites
             this.templateService = templateService;
         }
 
+        [RelayCommand]
+        public async Task LoadAllDataAsync()
+        {
+            await LoadItemsAsync();
+            await LoadTemplatesAsync();
+        }
 
         [RelayCommand]
         public async Task LoadItemsAsync()
